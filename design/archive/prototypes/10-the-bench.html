@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE JEWELS — The Bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Commissioner:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4
+ * macrostructure: Narrative Workflow · nav: N3 Side rail · footer: Ft1 Mast-headed
+ * theme: Studio (light paper · display-serif · forest-green accent)
+ * knobs: stages=5, numbering=decimal-major, connector=vertical-rule
+ * genre: editorial · tone: austere · enrichment: E5 hand-built SVG (Tier B, one per stage)
+ * audience: someone commissioning a piece who has never commissioned anything
+ */
+:root{
+  --color-paper:      oklch(97% 0.006 142);
+  --color-paper-2:    oklch(94.2% 0.009 142);
+  --color-paper-3:    oklch(90% 0.013 144);
+  --color-ink:        oklch(23% 0.020 150);
+  --color-ink-2:      oklch(41% 0.018 150);
+  --color-muted:      oklch(54% 0.015 148);
+  --color-accent:     oklch(45% 0.115 148);
+  --color-accent-soft:oklch(92% 0.032 146);
+  --color-rule:       oklch(85% 0.012 145);
+  --color-focus:      oklch(45% 0.160 252);
+  --font-display:'Young Serif',Georgia,serif;
+  --font-body:'Commissioner','Helvetica Neue',sans-serif;
+  --text-xs:0.6875rem; --text-sm:0.8125rem; --text-base:0.9375rem; --text-lg:1.0625rem;
+  --text-xl:1.25rem; --text-2xl:1.625rem; --text-3xl:2.125rem;
+  --text-stage:clamp(1.75rem,3.6vw,3rem);
+  --text-figure:clamp(2.5rem,6vw,5rem);
+  --text-display:clamp(2.25rem,5.4vw,4.25rem);
+  --lh-tight:1.08; --lh-snug:1.26; --lh-body:1.7;
+  --space-3xs:4px; --space-2xs:8px; --space-xs:12px; --space-sm:16px; --space-md:24px;
+  --space-lg:32px; --space-xl:48px; --space-2xl:64px; --space-3xl:96px; --space-4xl:128px;
+  --gutter:clamp(16px,4vw,56px);
+  --rail-w:76px;
+  --rule-hair:1px; --rule-firm:2px; --radius-sm:3px; --radius-pill:999px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:130ms; --dur-base:240ms; --dur-slow:460ms;
+  --z-nav:300;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);
+  font-weight:300;font-size:var(--text-base);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent-soft);color:var(--color-ink)}
+:focus-visible{outline:var(--rule-firm) solid var(--color-focus);outline-offset:3px}
+h1,h2,h3{font-family:var(--font-display);font-style:normal;font-weight:400;
+  line-height:var(--lh-tight);overflow-wrap:anywhere;min-width:0}
+.shell{padding-left:var(--rail-w)}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:var(--gutter)}
+.prose{max-width:66ch}
+
+/* ── N3 · Side rail ────────────────────────────────────── */
+.rail{position:fixed;inset:0 auto 0 0;width:var(--rail-w);z-index:var(--z-nav);
+  background:var(--color-paper-2);border-right:var(--rule-hair) solid var(--color-rule);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding-block:var(--space-md)}
+.rail__mark{font-family:var(--font-display);font-size:var(--text-lg);letter-spacing:.22em;
+  writing-mode:vertical-rl;text-orientation:mixed;line-height:1;white-space:nowrap}
+.rail__dots{list-style:none;display:flex;flex-direction:column;align-items:center;gap:var(--space-sm)}
+.rail__dots a{display:grid;place-items:center;width:32px;height:32px;border-radius:var(--radius-pill);
+  font-size:var(--text-xs);letter-spacing:.04em;color:var(--color-muted);line-height:1;
+  transition:color var(--dur-base) var(--ease-out),background-color var(--dur-base) var(--ease-out)}
+.rail__dots a:hover{color:var(--color-ink);background:var(--color-paper-3)}
+.rail__dots a:active{background:var(--color-rule)}
+.rail__dots a[aria-current="true"]{color:var(--color-paper);background:var(--color-accent)}
+.rail__cta{writing-mode:vertical-rl;font-size:var(--text-xs);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--color-ink-2);padding-block:var(--space-sm);white-space:nowrap;line-height:1;
+  transition:color var(--dur-fast) var(--ease-out)}
+.rail__cta:hover{color:var(--color-accent)}
+@media(max-width:60rem){
+  .shell{padding-left:0}
+  .rail{inset:0 0 auto 0;width:auto;height:auto;flex-direction:row;
+    border-right:none;border-bottom:var(--rule-hair) solid var(--color-rule);
+    padding:var(--space-2xs) var(--gutter)}
+  .rail__mark{writing-mode:horizontal-tb;letter-spacing:.16em}
+  .rail__dots{flex-direction:row;gap:var(--space-2xs)}
+  .rail__cta{writing-mode:horizontal-tb;padding-block:0}
+}
+@media(max-width:34rem){
+  .rail{padding-inline:var(--space-2xs);gap:var(--space-2xs)}
+  .rail__cta{display:none}
+  .rail__mark{font-size:var(--text-sm);letter-spacing:.08em}
+  .rail__dots{gap:2px}
+  .rail__dots a{width:26px;height:26px;font-size:10px}
+}
+
+/* ── Opening ───────────────────────────────────────────── */
+.open{padding-block:var(--space-3xl) var(--space-4xl)}
+.open h1{font-size:var(--text-display);max-width:16ch;margin-bottom:var(--space-md)}
+.open p{color:var(--color-ink-2);font-size:var(--text-lg);max-width:60ch}
+.open__ledger{display:flex;flex-wrap:wrap;gap:var(--space-lg);margin-top:var(--space-xl);
+  padding-top:var(--space-md);border-top:var(--rule-hair) solid var(--color-rule)}
+.open__ledger div{min-width:120px}
+.open__ledger dt{font-size:var(--text-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--color-muted)}
+.open__ledger dd{font-family:var(--font-display);font-size:var(--text-xl);margin-top:var(--space-3xs)}
+@media(max-width:60rem){.open{padding-block:calc(var(--space-3xl) + 48px) var(--space-3xl)}}
+
+/* ── Stages ────────────────────────────────────────────── */
+.stage{border-top:var(--rule-hair) solid var(--color-rule);padding-block:var(--space-2xl)}
+.stage__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:var(--space-xl);align-items:start}
+.stage__num{font-family:var(--font-display);font-size:var(--text-figure);line-height:1;
+  color:var(--color-accent);display:block;margin-bottom:var(--space-xs)}
+.stage__title{font-size:var(--text-stage);max-width:15ch;margin-bottom:var(--space-md)}
+.stage__body p{color:var(--color-ink-2);max-width:58ch}
+.stage__body p+p{margin-top:var(--space-sm)}
+.stage__aside{border-left:var(--rule-firm) solid var(--color-accent);padding-left:var(--space-md)}
+.stage__fig{aspect-ratio:5/4;display:grid;place-items:center;background:var(--color-paper-2);
+  border-radius:var(--radius-sm);margin-bottom:var(--space-md);color:var(--color-ink)}
+.stage__fig svg{width:66%;height:auto}
+.stage__facts{list-style:none}
+.stage__facts li{display:flex;justify-content:space-between;gap:var(--space-sm);
+  padding-block:var(--space-2xs);border-bottom:var(--rule-hair) solid var(--color-rule);
+  font-size:var(--text-sm);color:var(--color-muted)}
+.stage__facts b{font-weight:400;color:var(--color-ink);text-align:right}
+.stage__out{margin-top:var(--space-md);font-size:var(--text-sm);color:var(--color-ink-2);
+  background:var(--color-accent-soft);padding:var(--space-xs) var(--space-sm);border-radius:var(--radius-sm)}
+@media(max-width:60rem){.stage__grid{grid-template-columns:minmax(0,1fr)}
+  .stage__aside{border-left:none;border-top:var(--rule-firm) solid var(--color-accent);
+    padding-left:0;padding-top:var(--space-md)}}
+
+/* ── Commitment table (F3 tabular spec sheet) ──────────── */
+.commit{border-top:var(--rule-firm) solid var(--color-ink);padding-block:var(--space-2xl) var(--space-3xl)}
+.commit h2{font-size:var(--text-3xl);max-width:18ch;margin-bottom:var(--space-sm)}
+.commit p.lede{color:var(--color-ink-2);max-width:58ch;margin-bottom:var(--space-lg)}
+.commit__table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.commit__table caption{text-align:left;font-size:var(--text-xs);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--color-muted);padding-bottom:var(--space-2xs)}
+.commit__table th,.commit__table td{text-align:left;padding:var(--space-xs) var(--space-sm) var(--space-xs) 0;
+  border-bottom:var(--rule-hair) solid var(--color-rule);vertical-align:top;font-size:var(--text-sm)}
+.commit__table thead th{font-family:var(--font-body);font-weight:500;font-size:var(--text-xs);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--color-muted);
+  border-bottom:var(--rule-firm) solid var(--color-ink)}
+.commit__table tbody th{font-family:var(--font-display);font-weight:400;font-size:var(--text-lg);white-space:nowrap}
+.commit__table td{color:var(--color-ink-2)}
+.commit__table .yes{color:var(--color-accent)}
+@media(max-width:48rem){
+  .commit__table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .commit__table tr{display:block;border-bottom:var(--rule-firm) solid var(--color-ink);
+    padding-block:var(--space-sm)}
+  .commit__table th,.commit__table td{display:block;border:none;padding:0 0 var(--space-2xs)}
+  .commit__table td::before{content:attr(data-label) " — ";color:var(--color-muted)}
+}
+
+/* ── Ft1 · Mast-headed ─────────────────────────────────── */
+.mast{background:var(--color-paper-2);border-top:var(--rule-hair) solid var(--color-rule);
+  padding-block:var(--space-2xl)}
+.mast__row{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:var(--space-lg);flex-wrap:wrap}
+.mast__name{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);line-height:1;
+  letter-spacing:.02em}
+.mast__tag{color:var(--color-ink-2);font-size:var(--text-sm);max-width:40ch;margin-top:var(--space-2xs)}
+.mast__links{display:flex;gap:var(--space-md);flex-wrap:wrap;align-items:center}
+.mast__links a{font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--color-ink-2);white-space:nowrap;line-height:1;
+  border-bottom:var(--rule-hair) solid transparent;padding-bottom:var(--space-3xs);
+  transition:color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out)}
+.mast__links a:hover{color:var(--color-accent);border-bottom-color:var(--color-accent)}
+.mast__base{margin-top:var(--space-xl);padding-top:var(--space-sm);
+  border-top:var(--rule-hair) solid var(--color-rule);display:flex;flex-wrap:wrap;gap:var(--space-md);
+  font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--color-muted)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+ <defs>
+  <symbol id="bn-talk" viewBox="0 0 160 130">
+    <path d="M14 20h92a8 8 0 0 1 8 8v44a8 8 0 0 1-8 8H50l-24 20V80H14a8 8 0 0 1-8-8V28a8 8 0 0 1 8-8z"
+      fill="none" stroke="currentColor" stroke-width="3"/>
+    <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+      <path d="M26 40h60"/><path d="M26 54h44"/></g>
+    <circle cx="128" cy="96" r="22" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M118 96l7 8 15-17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="bn-draw" viewBox="0 0 160 130">
+    <rect x="18" y="14" width="106" height="100" rx="3" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M44 88 L72 44 L100 88" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M44 88h56" stroke="currentColor" stroke-width="3"/>
+    <path d="M118 108 L150 76 L140 66 L108 98 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M108 98l-6 18 18-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="bn-wax" viewBox="0 0 160 130">
+    <path d="M80 12 L130 42 L130 92 L80 122 L30 92 L30 42 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M80 12 L80 62 M30 42 L80 62 L130 42 M80 62 L80 122"
+      fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="80" cy="62" r="9" fill="none" stroke="currentColor" stroke-width="3"/>
+  </symbol>
+  <symbol id="bn-set" viewBox="0 0 160 130">
+    <circle cx="66" cy="72" r="38" fill="none" stroke="currentColor" stroke-width="3"/>
+    <polygon points="50,60 82,60 66,90" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M50 60 L66 74 L82 60" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M112 16 L146 50 L128 68 L94 34 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M94 34 L78 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="bn-hand" viewBox="0 0 160 130">
+    <rect x="22" y="44" width="116" height="66" rx="4" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M22 64h116" stroke="currentColor" stroke-width="3"/>
+    <path d="M80 44v66" stroke="currentColor" stroke-width="3"/>
+    <path d="M58 44c0-16 44-16 44 0" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M62 26 L80 8 L98 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+ </defs>
+</svg>
+
+<nav class="rail" aria-label="Stages">
+  <a class="rail__mark" href="#top">ICE JEWELS</a>
+  <ol class="rail__dots">
+    <li><a href="#s1" data-dot="s1" aria-current="true">1.0</a></li>
+    <li><a href="#s2" data-dot="s2">2.0</a></li>
+    <li><a href="#s3" data-dot="s3">3.0</a></li>
+    <li><a href="#s4" data-dot="s4">4.0</a></li>
+    <li><a href="#s5" data-dot="s5">5.0</a></li>
+  </ol>
+  <a class="rail__cta" href="#commit">Book the bench</a>
+</nav>
+
+<div class="shell" id="top">
+<main>
+<section class="open wrap">
+  <h1>A commission takes six weeks. Here is every week of it.</h1>
+  <p class="prose">Most workshops keep this part hidden, which is why commissioning anything feels like
+    handing over money and waiting. Below is the whole sequence — what happens, what it costs at that
+    point, and exactly how much of it you can still change your mind about.</p>
+  <dl class="open__ledger">
+    <div><dt>Stages</dt><dd>Five</dd></div>
+    <div><dt>Typical span</dt><dd>4–6 weeks</dd></div>
+    <div><dt>Deposit taken at</dt><dd>Stage 3.0</dd></div>
+    <div><dt>Free to cancel until</dt><dd>Stage 3.0</dd></div>
+  </dl>
+</section>
+
+<section class="stage wrap" id="s1">
+  <div class="stage__grid">
+    <div class="stage__body">
+      <span class="stage__num">1.0</span>
+      <h2 class="stage__title">The conversation</h2>
+      <p>An hour at the counter or on a call. You bring a reference — a photo, a screenshot, a piece
+        you already own, or nothing at all — and we work out what you're actually after, which is
+        often not the thing you walked in describing.</p>
+      <p>We'll talk budget here rather than at the end. It's the single most useful constraint in the
+        room, and knowing it early means we design something you can pay for instead of something you
+        have to talk yourself out of.</p>
+    </div>
+    <aside class="stage__aside">
+      <div class="stage__fig"><svg viewBox="0 0 160 130" aria-hidden="true"><use href="#bn-talk"/></svg></div>
+      <ul class="stage__facts">
+        <li><span>Duration</span><b>About an hour</b></li>
+        <li><span>You pay</span><b>Nothing</b></li>
+        <li><span>Still changeable</span><b>Everything</b></li>
+      </ul>
+      <p class="stage__out">Leaves with: a written brief and a price range, both on paper.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="stage wrap" id="s2">
+  <div class="stage__grid">
+    <div class="stage__body">
+      <span class="stage__num">2.0</span>
+      <h2 class="stage__title">The drawing</h2>
+      <p>One of the bench draws it by hand, then builds it in CAD so you can turn it around on screen.
+        You get both — the graphite because it shows intent, the render because it shows proportion.</p>
+      <p>Revisions at this stage are free and unlimited, and most commissions take two or three. This
+        is the cheapest possible moment to change your mind, so we'd rather you used it hard.</p>
+    </div>
+    <aside class="stage__aside">
+      <div class="stage__fig"><svg viewBox="0 0 160 130" aria-hidden="true"><use href="#bn-draw"/></svg></div>
+      <ul class="stage__facts">
+        <li><span>Duration</span><b>3–5 days</b></li>
+        <li><span>You pay</span><b>Nothing</b></li>
+        <li><span>Revisions</span><b>Unlimited</b></li>
+      </ul>
+      <p class="stage__out">Leaves with: a signed drawing and a fixed quote that won't move.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="stage wrap" id="s3">
+  <div class="stage__grid">
+    <div class="stage__body">
+      <span class="stage__num">3.0</span>
+      <h2 class="stage__title">The wax and the pour</h2>
+      <p>The model is printed in wax, checked against the drawing, and invested for casting. Once the
+        metal goes in, the shape is committed — this is the point of no return, and it's why the
+        deposit sits here and not earlier.</p>
+      <p>You're welcome to come and watch the pour. Most people don't, and the ones who do usually
+        say it's the part they remember.</p>
+    </div>
+    <aside class="stage__aside">
+      <div class="stage__fig"><svg viewBox="0 0 160 130" aria-hidden="true"><use href="#bn-wax"/></svg></div>
+      <ul class="stage__facts">
+        <li><span>Duration</span><b>About a week</b></li>
+        <li><span>You pay</span><b>Half, as deposit</b></li>
+        <li><span>Still changeable</span><b>Finish and stones</b></li>
+      </ul>
+      <p class="stage__out">Leaves with: nothing yet — but the shape is now fixed.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="stage wrap" id="s4">
+  <div class="stage__grid">
+    <div class="stage__body">
+      <span class="stage__num">4.0</span>
+      <h2 class="stage__title">The setting</h2>
+      <p>The longest stage and the one that decides whether the piece reads as good. Stones are seated
+        by hand under a scope, one at a time, and a densely set pendant can hold a setter for a
+        fortnight without looking like much is happening.</p>
+      <p>You'll get photographs partway through. They will look worse than the finished piece — setting
+        looks rough right up until the final polish, and we'd rather show you that than a staged shot.</p>
+    </div>
+    <aside class="stage__aside">
+      <div class="stage__fig"><svg viewBox="0 0 160 130" aria-hidden="true"><use href="#bn-set"/></svg></div>
+      <ul class="stage__facts">
+        <li><span>Duration</span><b>1–3 weeks</b></li>
+        <li><span>You pay</span><b>Nothing further</b></li>
+        <li><span>Still changeable</span><b>Polish only</b></li>
+      </ul>
+      <p class="stage__out">Leaves with: progress photographs, unretouched.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="stage wrap" id="s5">
+  <div class="stage__grid">
+    <div class="stage__body">
+      <span class="stage__num">5.0</span>
+      <h2 class="stage__title">The hand-over</h2>
+      <p>We weigh it in front of you, put it on the scale next to the quote, and hand you the original
+        drawing framed. The balance is due here — not before — and if the piece isn't what the drawing
+        promised, you don't pay it.</p>
+      <p>After that it's yours, and the repair terms start: free resizing, re-tipping, re-polishing and
+        stone resetting for as long as the bench exists.</p>
+    </div>
+    <aside class="stage__aside">
+      <div class="stage__fig"><svg viewBox="0 0 160 130" aria-hidden="true"><use href="#bn-hand"/></svg></div>
+      <ul class="stage__facts">
+        <li><span>Duration</span><b>Half an hour</b></li>
+        <li><span>You pay</span><b>The balance</b></li>
+        <li><span>Aftercare</span><b>No time limit</b></li>
+      </ul>
+      <p class="stage__out">Leaves with: the piece, the drawing, and the scale reading.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="commit wrap" id="commit">
+  <h2>What you're committed to, stage by stage</h2>
+  <p class="lede">The short version of everything above. Nothing binds you until the metal is poured.</p>
+  <table class="commit__table">
+    <caption>Commitment and cost by stage</caption>
+    <thead>
+      <tr><th scope="col">Stage</th><th scope="col">Paid so far</th>
+        <th scope="col">Can still change</th><th scope="col">Can still walk</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">1.0 Conversation</th><td data-label="Paid">Nothing</td>
+        <td data-label="Changeable">Everything</td><td data-label="Walk" class="yes">Yes</td></tr>
+      <tr><th scope="row">2.0 Drawing</th><td data-label="Paid">Nothing</td>
+        <td data-label="Changeable">Everything</td><td data-label="Walk" class="yes">Yes</td></tr>
+      <tr><th scope="row">3.0 Wax and pour</th><td data-label="Paid">Half</td>
+        <td data-label="Changeable">Finish, stones</td><td data-label="Walk">Deposit held</td></tr>
+      <tr><th scope="row">4.0 Setting</th><td data-label="Paid">Half</td>
+        <td data-label="Changeable">Polish</td><td data-label="Walk">Deposit held</td></tr>
+      <tr><th scope="row">5.0 Hand-over</th><td data-label="Paid">In full</td>
+        <td data-label="Changeable">Nothing</td><td data-label="Walk">If it's not the drawing</td></tr>
+    </tbody>
+  </table>
+</section>
+</main>
+
+<footer class="mast">
+  <div class="wrap">
+    <div class="mast__row">
+      <div>
+        <p class="mast__name">ICE JEWELS</p>
+        <p class="mast__tag">A working bench that takes twelve commissions at a time and answers
+          its own telephone.</p>
+      </div>
+      <nav class="mast__links" aria-label="Footer">
+        <a href="#">Book the bench</a><a href="#">Stock list</a>
+        <a href="#">Repairs</a><a href="#">Visit</a>
+      </nav>
+    </div>
+    <p class="mast__base">
+      <span>© 2026 Ice Jewels</span><span>Concept 10 — The Bench</span>
+      <span>Narrative Workflow · Studio</span><span>All copy is placeholder</span>
+    </p>
+  </div>
+</footer>
+</div>
+
+<script>
+const dots=new Map([...document.querySelectorAll('.rail__dots a')].map(a=>[a.dataset.dot,a]));
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    dots.forEach(a=>a.removeAttribute('aria-current'));
+    const a=dots.get(e.target.id);
+    if(a)a.setAttribute('aria-current','true');
+  });
+},{rootMargin:'-45% 0px -45% 0px'});
+['s1','s2','s3','s4','s5'].forEach(id=>{
+  const el=document.getElementById(id); if(el)io.observe(el);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE JEWELS — Boombox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Rubik+Mono+One&family=VT323&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#080415; --deep:#110a26; --panel:#1d1340; --panel-2:#2a1c5c;
+  --acid:#b6ff2e; --hot:#ff3df0; --cyan:#35e8ff; --amber:#ffb800;
+  --chrome-hi:#ffffff; --chrome-mid:#9fb3c8; --chrome-lo:#2b3a4d;
+  --txt:#ece7ff; --dim:#8f81bd;
+  --logo:'Monoton',cursive; --disp:'Rubik Mono One',sans-serif;
+  --crt:'VT323',monospace; --body:'Outfit',sans-serif;
+  --pad:clamp(16px,4vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--txt);font-family:var(--body);font-weight:300;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(70% 50% at 50% 0%,rgba(255,61,240,.16),transparent 62%),
+    radial-gradient(60% 46% at 12% 72%,rgba(53,232,255,.12),transparent 64%),
+    radial-gradient(60% 46% at 88% 40%,rgba(182,255,46,.08),transparent 62%)}
+body::after{content:'';position:fixed;inset:0;z-index:998;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(180deg,rgba(0,0,0,.24) 0 1px,transparent 1px 3px)}
+body::before{content:'';position:fixed;inset:0;z-index:997;pointer-events:none;
+  background:radial-gradient(ellipse 96% 86% at 50% 50%,transparent 58%,rgba(8,4,21,.78) 100%)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--acid);color:var(--void)}
+
+.chrome-tx{
+  background:linear-gradient(180deg,#fff 0%,#dff0ff 22%,#7fa3c4 44%,#243a52 50%,#8fb6d6 56%,#ffffff 74%,#a9c8e2 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(53,232,255,.4))}
+.crt{font-family:var(--crt);font-size:17px;letter-spacing:.06em;color:var(--acid);line-height:1.3}
+
+/* ---- window chrome component ---- */
+.win{border:2px solid #000;border-radius:7px;overflow:hidden;
+  background:linear-gradient(180deg,var(--panel),var(--deep));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 16px 40px rgba(0,0,0,.6)}
+.win-bar{display:flex;align-items:center;gap:10px;padding:7px 10px;border-bottom:2px solid #000;
+  background:linear-gradient(180deg,#5b47a8,#2d1f63 60%,#241852);position:relative}
+.win-bar b{font-family:var(--crt);font-size:17px;letter-spacing:.08em;color:#e9e2ff;flex:1;
+  text-shadow:1px 1px 0 rgba(0,0,0,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win-bar .dots{display:flex;gap:5px}
+.win-bar .dots i{width:15px;height:14px;border-radius:2px;border:1.5px solid #000;
+  background:linear-gradient(180deg,#d8d2ee,#8b82b8);box-shadow:inset 1px 1px 0 rgba(255,255,255,.7)}
+.win-bar .grip{flex:0 0 auto;height:9px;width:44px;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.4) 0 1px,transparent 1px 3px)}
+.win-body{padding:clamp(16px,2.6vw,26px)}
+
+/* ---- nav ---- */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,4,21,.9);backdrop-filter:blur(10px);
+  border-bottom:2px solid #000;box-shadow:0 2px 0 rgba(182,255,46,.35)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:10px var(--pad);gap:16px}
+.logo{font-family:var(--logo);font-size:clamp(20px,2.8vw,30px);letter-spacing:.02em;line-height:1;
+  color:var(--hot);text-shadow:0 0 14px rgba(255,61,240,.8),2px 2px 0 rgba(0,0,0,.8)}
+.navlinks{display:flex;gap:6px}
+.navlinks a{font-family:var(--crt);font-size:17px;letter-spacing:.06em;padding:5px 13px;border:2px solid #000;
+  border-radius:4px;background:linear-gradient(180deg,#3a2a7d,#241852);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28);transition:.16s}
+.navlinks a:hover{background:linear-gradient(180deg,var(--acid),#79b310);color:#0b1400;
+  transform:translateY(-2px);box-shadow:0 4px 0 #000}
+.nav-cart{font-family:var(--crt);font-size:17px;padding:6px 14px;border:2px solid #000;border-radius:4px;
+  background:linear-gradient(180deg,var(--hot),#a1179a);color:#fff;box-shadow:0 3px 0 #000;transition:.16s}
+.nav-cart:hover{transform:translateY(2px);box-shadow:0 1px 0 #000}
+@media(max-width:900px){.navlinks{display:none}}
+
+/* ---- ticker ---- */
+.vhs{background:#000;border-bottom:2px solid var(--acid);overflow:hidden;padding:5px 0}
+.vhs ul{display:flex;gap:34px;list-style:none;width:max-content;animation:roll 22s linear infinite}
+.vhs li{font-family:var(--crt);font-size:18px;color:var(--acid);white-space:nowrap;
+  display:flex;align-items:center;gap:34px;text-shadow:0 0 10px rgba(182,255,46,.7)}
+.vhs li::after{content:'▶'}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* ---- hero ---- */
+header{padding:clamp(28px,5vw,60px) var(--pad) clamp(40px,6vw,80px);position:relative;overflow:hidden}
+.checker{position:absolute;inset:auto 0 0;height:180px;pointer-events:none;opacity:.14;
+  background-image:linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%),
+                   linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%);
+  background-size:44px 44px;background-position:0 0,22px 22px;
+  -webkit-mask-image:linear-gradient(transparent,#000 52%,transparent);
+  mask-image:linear-gradient(transparent,#000 52%,transparent)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,3vw,40px);align-items:center;
+  position:relative;z-index:2}
+.tag-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.blink{font-family:var(--crt);font-size:16px;padding:3px 11px;border:2px solid #000;border-radius:3px;
+  background:var(--amber);color:#180d00;box-shadow:0 3px 0 #000;animation:blinky 1.1s steps(1) infinite}
+@keyframes blinky{50%{background:var(--acid)}}
+.tagx{font-family:var(--crt);font-size:16px;padding:3px 11px;border:2px solid #000;border-radius:3px;
+  background:linear-gradient(180deg,#3a2a7d,#241852);color:var(--cyan);box-shadow:0 3px 0 #000}
+h1{font-family:var(--disp);font-size:clamp(38px,8.4vw,116px);line-height:.9;text-transform:uppercase;
+  letter-spacing:-.02em}
+h1 .l1{display:block}
+h1 .l2{display:block;color:var(--acid);-webkit-text-stroke:2px #000;
+  text-shadow:5px 5px 0 var(--hot),9px 9px 0 rgba(0,0,0,.8)}
+.h-body{font-size:15.5px;line-height:1.7;max-width:44ch;margin-top:22px;color:#cfc4f5}
+.h-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{font-family:var(--disp);font-size:14px;text-transform:uppercase;letter-spacing:.01em;padding:15px 26px;
+  border:2px solid #000;border-radius:6px;transition:.16s;display:inline-block}
+.btn-a{background:linear-gradient(180deg,var(--acid),#6ea80c);color:#0c1600;box-shadow:0 6px 0 #000}
+.btn-a:hover{transform:translateY(4px);box-shadow:0 2px 0 #000}
+.btn-b{background:linear-gradient(180deg,#4a36a0,#251a5e);color:#fff;box-shadow:0 6px 0 #000}
+.btn-b:hover{transform:translateY(4px);box-shadow:0 2px 0 #000}
+.hero-win .win-body{display:grid;place-items:center;padding:clamp(20px,3vw,34px);position:relative;
+  background:
+   repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px),
+   radial-gradient(circle at 50% 45%,rgba(53,232,255,.2),transparent 62%)}
+.hero-win svg{width:min(78%,300px);filter:drop-shadow(0 16px 26px rgba(0,0,0,.75));
+  animation:spin3d 8s ease-in-out infinite}
+@keyframes spin3d{0%,100%{transform:rotate(-5deg) translateY(-8px)}50%{transform:rotate(5deg) translateY(8px)}}
+.eq{display:flex;gap:4px;align-items:flex-end;height:44px;margin-top:20px;justify-content:center;width:100%}
+.eq i{width:7px;background:linear-gradient(180deg,var(--acid),var(--cyan));border:1px solid #000;
+  animation:bounce .8s ease-in-out infinite alternate}
+@keyframes bounce{from{height:12%}to{height:100%}}
+.starburst{position:absolute;width:46px;height:46px;pointer-events:none;z-index:4;
+  background:conic-gradient(from 0deg,transparent 0 80deg,#fff 90deg,transparent 100deg 170deg,#fff 180deg,
+   transparent 190deg 260deg,#fff 270deg,transparent 280deg 350deg,#fff 360deg);
+  -webkit-mask-image:radial-gradient(circle,#000 0 34%,transparent 60%);mask-image:radial-gradient(circle,#000 0 34%,transparent 60%);
+  animation:pop 2.4s ease-in-out infinite}
+@keyframes pop{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1) rotate(80deg)}}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr}}
+
+/* ---- section head ---- */
+.sec{padding:clamp(44px,6vw,86px) var(--pad)}
+.sec-head{text-align:center;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head .crt{color:var(--cyan)}
+.sec-head h2{font-family:var(--disp);font-size:clamp(26px,5.4vw,66px);text-transform:uppercase;
+  line-height:.94;margin-top:10px;letter-spacing:-.02em}
+.sec-head p{color:#b6a9dd;max-width:54ch;margin:14px auto 0;font-size:15px}
+
+/* ---- product windows ---- */
+.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:20px}
+.prod{transition:transform .22s cubic-bezier(.2,.9,.3,1.3)}
+.prod:hover{transform:translateY(-9px) rotate(-.8deg)}
+.prod .screen{aspect-ratio:1.08;display:grid;place-items:center;border:2px solid #000;border-radius:4px;
+  margin-bottom:14px;position:relative;overflow:hidden;
+  background:
+   repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 2px,transparent 2px 5px),
+   radial-gradient(circle at 50% 42%,var(--glow,rgba(255,61,240,.26)),transparent 66%),#0a0620}
+.prod .screen svg{width:78%;transition:transform .4s cubic-bezier(.2,.9,.3,1.3);
+  filter:drop-shadow(0 12px 20px rgba(0,0,0,.8))}
+.prod:hover .screen svg{transform:scale(1.1) rotate(4deg)}
+.prod .screen .px{position:absolute;top:8px;right:9px;font-family:var(--crt);font-size:15px;color:var(--acid)}
+.prod h3{font-family:var(--disp);font-size:16px;text-transform:uppercase;line-height:1.2}
+.prod .rows{margin-top:12px;font-family:var(--crt);font-size:17px;color:var(--dim)}
+.prod .rows div{display:flex;justify-content:space-between;border-bottom:1px dotted rgba(143,129,189,.4);padding:3px 0}
+.prod .rows b{color:var(--txt);font-weight:400}
+.prod .bar{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}
+.prod .pr{font-family:var(--disp);font-size:20px;color:var(--acid)}
+.prod .add{font-family:var(--crt);font-size:17px;padding:5px 14px;border:2px solid #000;border-radius:4px;
+  background:linear-gradient(180deg,var(--hot),#a1179a);color:#fff;box-shadow:0 3px 0 #000;transition:.16s}
+.prod:hover .add{background:linear-gradient(180deg,var(--acid),#6ea80c);color:#0c1600}
+
+/* ---- player strip ---- */
+.player{margin:0 var(--pad) clamp(44px,6vw,86px)}
+.player .win-body{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center}
+.player .disc{width:86px;height:86px;border-radius:50%;flex:0 0 auto;position:relative;
+  background:conic-gradient(from 0deg,#ff3df0,#ffb800,#b6ff2e,#35e8ff,#ff3df0);
+  border:2px solid #000;animation:spinCD 3.4s linear infinite;
+  box-shadow:0 0 26px rgba(53,232,255,.5)}
+.player .disc::after{content:'';position:absolute;inset:36%;border-radius:50%;background:var(--void);border:2px solid #000}
+@keyframes spinCD{to{rotate:360deg}}
+.player .now .crt{color:var(--cyan)}
+.player .now h4{font-family:var(--disp);font-size:clamp(16px,2.6vw,26px);text-transform:uppercase;margin:6px 0 10px}
+.player .track{height:8px;border:2px solid #000;border-radius:99px;background:#0a0620;overflow:hidden}
+.player .track i{display:block;height:100%;width:38%;background:linear-gradient(90deg,var(--acid),var(--cyan));
+  animation:fill 9s linear infinite}
+@keyframes fill{from{width:4%}to{width:100%}}
+.player .ctrls{display:flex;gap:7px}
+.player .ctrls span{width:38px;height:34px;border:2px solid #000;border-radius:4px;display:grid;place-items:center;
+  background:linear-gradient(180deg,#4a36a0,#251a5e);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);
+  font-size:13px;cursor:pointer;transition:.15s}
+.player .ctrls span:hover{background:linear-gradient(180deg,var(--acid),#6ea80c);color:#0c1600}
+@media(max-width:760px){.player .win-body{grid-template-columns:1fr;text-align:center}
+  .player .disc{margin:0 auto}.player .ctrls{justify-content:center}}
+
+/* ---- stats ---- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{text-align:center;padding:26px 14px;border:2px solid #000;border-radius:7px;
+  background:linear-gradient(180deg,var(--panel-2),var(--deep));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 0 #000;transition:.18s}
+.stat:hover{transform:translateY(4px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 4px 0 #000}
+.stat b{display:block;font-family:var(--disp);font-size:clamp(22px,3.6vw,42px);color:var(--acid);
+  text-shadow:3px 3px 0 rgba(0,0,0,.7)}
+.stat span{font-family:var(--crt);font-size:17px;color:var(--dim);display:block;margin-top:8px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ---- guestbook ---- */
+.book-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:18px}
+.entry .win-body{font-family:var(--crt);font-size:18px;line-height:1.45}
+.entry .who{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.entry .pfp{width:36px;height:36px;border:2px solid #000;border-radius:4px;display:grid;place-items:center;
+  font-family:var(--disp);font-size:14px;color:#0c1600;background:linear-gradient(135deg,var(--cyan),var(--acid))}
+.entry .who b{color:var(--hot);font-weight:400}
+.entry .who small{display:block;color:var(--dim);font-size:15px}
+.entry p{color:#ded6ff}
+.entry .stars{color:var(--amber);margin-top:10px;letter-spacing:.2em}
+
+/* ---- signup ---- */
+.mail{margin:0 var(--pad) clamp(44px,6vw,86px)}
+.mail .win-body{text-align:center;padding:clamp(26px,4vw,52px);
+  background:radial-gradient(70% 90% at 50% 0%,rgba(255,61,240,.22),transparent 62%)}
+.mail h3{font-family:var(--disp);font-size:clamp(22px,4.4vw,54px);text-transform:uppercase;line-height:.96}
+.mail h3 span{color:var(--acid)}
+.mail p{color:#b6a9dd;margin:14px auto 24px;max-width:46ch;font-size:15px}
+.mform{display:flex;gap:10px;max-width:500px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.mform input{flex:1;min-width:210px;font-family:var(--crt);font-size:19px;padding:11px 16px;
+  border:2px solid #000;border-radius:5px;background:#0a0620;color:var(--acid);outline:none;
+  box-shadow:inset 2px 2px 0 rgba(0,0,0,.6)}
+.mform input::placeholder{color:#5c4f8a}
+.mform button{font-family:var(--disp);font-size:14px;text-transform:uppercase;padding:13px 26px;
+  border:2px solid #000;border-radius:5px;cursor:pointer;color:#0c1600;
+  background:linear-gradient(180deg,var(--acid),#6ea80c);box-shadow:0 5px 0 #000;transition:.16s}
+.mform button:hover{transform:translateY(3px);box-shadow:0 2px 0 #000}
+.counter{font-family:var(--crt);font-size:18px;color:var(--cyan);margin-top:20px}
+.counter b{background:#000;border:2px solid var(--acid);padding:3px 9px;letter-spacing:.3em;color:var(--acid)}
+
+/* ---- footer ---- */
+footer{border-top:2px solid #000;box-shadow:0 -2px 0 rgba(182,255,46,.35);
+  background:linear-gradient(180deg,var(--deep),var(--void));padding:clamp(38px,5vw,68px) var(--pad) 24px}
+.fg{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:30px}
+.flogo{font-family:var(--logo);font-size:clamp(26px,4.6vw,46px);color:var(--hot);line-height:1.4;
+  text-shadow:0 0 16px rgba(255,61,240,.7),2px 2px 0 rgba(0,0,0,.8)}
+.flogo small{display:block;font-family:var(--crt);font-size:18px;color:var(--cyan);text-shadow:none;margin-top:6px}
+footer h6{font-family:var(--disp);font-size:12px;text-transform:uppercase;color:var(--acid);margin-bottom:14px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-family:var(--crt);font-size:18px}
+footer ul a{color:var(--dim);transition:.16s}
+footer ul a:hover{color:var(--acid);text-shadow:0 0 10px rgba(182,255,46,.8)}
+.fend{margin-top:40px;padding-top:18px;border-top:1px dotted rgba(143,129,189,.4);display:flex;
+  justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--crt);font-size:16px;color:var(--dim)}
+@media(max-width:820px){.fg{grid-template-columns:1fr 1fr}}
+
+.rv{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="y-au" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#fff2c0"/><stop offset=".4" stop-color="#ffb800"/>
+    <stop offset=".6" stop-color="#9a6a00"/><stop offset="1" stop-color="#ffe08a"/></linearGradient>
+  <linearGradient id="y-chr" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#cfe6ff"/>
+    <stop offset=".5" stop-color="#3f5a77"/><stop offset=".62" stop-color="#a9cdec"/>
+    <stop offset="1" stop-color="#ffffff"/></linearGradient>
+  <linearGradient id="y-ice" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#b9f4ff"/><stop offset="1" stop-color="#3fa8c9"/></linearGradient>
+  <linearGradient id="y-hot" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ff9bf5"/><stop offset="1" stop-color="#a1179a"/></linearGradient>
+
+  <symbol id="y-boom" viewBox="0 0 320 220">
+    <rect x="12" y="34" width="296" height="152" rx="12" fill="url(#y-chr)" stroke="#000" stroke-width="4"/>
+    <rect x="26" y="48" width="268" height="124" rx="8" fill="#0d1220" stroke="#000" stroke-width="3"/>
+    <circle cx="86" cy="110" r="42" fill="url(#y-au)" stroke="#000" stroke-width="3"/>
+    <circle cx="86" cy="110" r="28" fill="#0d1220" stroke="#000" stroke-width="2"/>
+    <circle cx="86" cy="110" r="10" fill="url(#y-ice)"/>
+    <circle cx="234" cy="110" r="42" fill="url(#y-au)" stroke="#000" stroke-width="3"/>
+    <circle cx="234" cy="110" r="28" fill="#0d1220" stroke="#000" stroke-width="2"/>
+    <circle cx="234" cy="110" r="10" fill="url(#y-ice)"/>
+    <rect x="136" y="64" width="48" height="30" rx="4" fill="url(#y-ice)" stroke="#000" stroke-width="2.5"/>
+    <g fill="url(#y-au)" stroke="#000" stroke-width="2">
+      <rect x="136" y="104" width="13" height="13" rx="2"/><rect x="153" y="104" width="13" height="13" rx="2"/>
+      <rect x="170" y="104" width="13" height="13" rx="2"/>
+      <rect x="136" y="122" width="13" height="13" rx="2"/><rect x="153" y="122" width="13" height="13" rx="2"/>
+      <rect x="170" y="122" width="13" height="13" rx="2"/></g>
+    <path d="M62 34 Q160 -12 258 34" fill="none" stroke="url(#y-chr)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M62 34 Q160 -12 258 34" fill="none" stroke="#000" stroke-width="2.5"/>
+    <g fill="url(#y-ice)">
+      <circle cx="100" cy="14" r="7"/><circle cx="160" cy="4" r="7"/><circle cx="220" cy="14" r="7"/></g>
+  </symbol>
+
+  <symbol id="y-chain" viewBox="0 0 300 180">
+    <g fill="none" stroke="url(#y-au)" stroke-width="17" stroke-linecap="round">
+      <ellipse cx="48" cy="62" rx="33" ry="20" transform="rotate(-15 48 62)"/>
+      <ellipse cx="100" cy="74" rx="33" ry="20" transform="rotate(13 100 74)"/>
+      <ellipse cx="150" cy="82" rx="33" ry="20" transform="rotate(-9 150 82)"/>
+      <ellipse cx="200" cy="74" rx="33" ry="20" transform="rotate(13 200 74)"/>
+      <ellipse cx="252" cy="62" rx="33" ry="20" transform="rotate(-15 252 62)"/></g>
+    <g fill="none" stroke="#000" stroke-width="2.5">
+      <ellipse cx="48" cy="62" rx="41" ry="28" transform="rotate(-15 48 62)"/>
+      <ellipse cx="150" cy="82" rx="41" ry="28" transform="rotate(-9 150 82)"/>
+      <ellipse cx="252" cy="62" rx="41" ry="28" transform="rotate(-15 252 62)"/></g>
+  </symbol>
+
+  <symbol id="y-cassette" viewBox="0 0 300 200">
+    <rect x="14" y="26" width="272" height="150" rx="10" fill="url(#y-hot)" stroke="#000" stroke-width="4"/>
+    <rect x="34" y="46" width="232" height="70" rx="6" fill="#0d1220" stroke="#000" stroke-width="3"/>
+    <circle cx="102" cy="81" r="24" fill="url(#y-chr)" stroke="#000" stroke-width="3"/>
+    <circle cx="198" cy="81" r="24" fill="url(#y-chr)" stroke="#000" stroke-width="3"/>
+    <circle cx="102" cy="81" r="9" fill="#0d1220"/><circle cx="198" cy="81" r="9" fill="#0d1220"/>
+    <rect x="126" y="70" width="48" height="22" fill="url(#y-au)" stroke="#000" stroke-width="2"/>
+    <rect x="34" y="128" width="232" height="30" rx="5" fill="url(#y-ice)" stroke="#000" stroke-width="3"/>
+    <g stroke="#000" stroke-width="2.5"><path d="M50 143 h56"/><path d="M118 143 h48"/><path d="M178 143 h72"/></g>
+  </symbol>
+
+  <symbol id="y-grillz" viewBox="0 0 260 150">
+    <g fill="url(#y-chr)" stroke="#000" stroke-width="3">
+      <path d="M28 40h42v54q0 18-21 18t-21-18z"/><path d="M76 34h44v62q0 18-22 18t-22-18z"/>
+      <path d="M126 34h44v62q0 18-22 18t-22-18z"/><path d="M176 40h42v54q0 18-21 18t-21-18z"/></g>
+    <g fill="url(#y-ice)" stroke="#000" stroke-width="1.5">
+      <circle cx="49" cy="62" r="8"/><circle cx="98" cy="58" r="8"/><circle cx="98" cy="82" r="8"/>
+      <circle cx="148" cy="58" r="8"/><circle cx="148" cy="82" r="8"/><circle cx="197" cy="62" r="8"/></g>
+  </symbol>
+
+  <symbol id="y-ring" viewBox="0 0 220 220">
+    <ellipse cx="110" cy="128" rx="64" ry="70" fill="none" stroke="url(#y-au)" stroke-width="20"/>
+    <ellipse cx="110" cy="128" rx="74" ry="80" fill="none" stroke="#000" stroke-width="3"/>
+    <ellipse cx="110" cy="128" rx="54" ry="60" fill="none" stroke="#000" stroke-width="3"/>
+    <polygon points="74,48 146,48 110,8" fill="url(#y-ice)" stroke="#000" stroke-width="3"/>
+    <polygon points="74,48 146,48 110,110" fill="url(#y-chr)" stroke="#000" stroke-width="3"/>
+  </symbol>
+</defs></svg>
+
+<nav><div class="nav-in">
+  <a class="logo" href="#">Ice Jewels</a>
+  <div class="navlinks">
+    <a href="#shelf">Shelf</a><a href="#stats">Specs</a><a href="#book">Guestbook</a><a href="#">Help</a>
+  </div>
+  <a class="nav-cart" href="#">CART [0]</a>
+</div></nav>
+
+<div class="vhs"><ul>
+  <li>NEW DROP LOADED</li><li>FREE SHIPPING OVER $200</li><li>LAYAWAY AVAILABLE</li><li>SINCE 1996</li>
+  <li>NEW DROP LOADED</li><li>FREE SHIPPING OVER $200</li><li>LAYAWAY AVAILABLE</li><li>SINCE 1996</li>
+</ul></div>
+
+<header>
+  <div class="checker"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="tag-row">
+        <span class="blink">★ NEW! ★</span><span class="tagx">VOL. 96</span>
+        <span class="tagx">14K + CHROME</span><span class="tagx">SHIPS TODAY</span>
+      </div>
+      <h1><span class="l1 chrome-tx">Turn it</span><span class="l2">all the way up</span></h1>
+      <p class="h-body">Chrome-finish chains, cassette pendants and boombox grillz built like the
+        gear they're named after. Heavy, loud, and made to outlive the trend that started it.</p>
+      <div class="h-cta">
+        <a class="btn btn-a" href="#shelf">Browse the shelf</a>
+        <a class="btn btn-b" href="#book">Read the guestbook</a>
+      </div>
+    </div>
+    <div class="win hero-win">
+      <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>ICEJEWELS_96.EXE</b><span class="grip"></span></div>
+      <div class="win-body">
+        <svg viewBox="0 0 320 220"><use href="#y-boom"/></svg>
+        <div class="eq" id="eq"></div>
+        <span class="starburst" style="top:12%;left:10%"></span>
+        <span class="starburst" style="bottom:22%;right:12%;animation-delay:1.1s"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="shelf">
+  <div class="sec-head rv">
+    <p class="crt">&gt; loading shelf.dat ...</p>
+    <h2>The shelf</h2>
+    <p>Four pieces in stock right now. Solid metal, chrome-polished, boxed with a sticker sheet
+      and a hand-numbered card.</p>
+  </div>
+  <div class="shelf">
+    <article class="win prod rv" style="--glow:rgba(255,184,0,.3)">
+      <div class="win-bar"><span class="dots"><i></i><i></i></span><b>cuban_14mm.gif</b></div>
+      <div class="win-body">
+        <div class="screen"><span class="px">01</span><svg viewBox="0 0 300 180"><use href="#y-chain"/></svg></div>
+        <h3>Cuban 14mm</h3>
+        <div class="rows"><div><span>metal</span><b>14K solid</b></div>
+          <div><span>weight</span><b>188g</b></div><div><span>stock</span><b>9 left</b></div></div>
+        <div class="bar"><span class="pr">$3,900</span><span class="add">ADD +</span></div>
+      </div></article>
+    <article class="win prod rv" style="--glow:rgba(255,61,240,.3)">
+      <div class="win-bar"><span class="dots"><i></i><i></i></span><b>tape_pendant.gif</b></div>
+      <div class="win-body">
+        <div class="screen"><span class="px">02</span><svg viewBox="0 0 300 200"><use href="#y-cassette"/></svg></div>
+        <h3>Mixtape Pendant</h3>
+        <div class="rows"><div><span>metal</span><b>14K + enamel</b></div>
+          <div><span>engrave</span><b>A-side / B-side</b></div><div><span>stock</span><b>4 left</b></div></div>
+        <div class="bar"><span class="pr">$1,450</span><span class="add">ADD +</span></div>
+      </div></article>
+    <article class="win prod rv" style="--glow:rgba(53,232,255,.3)">
+      <div class="win-bar"><span class="dots"><i></i><i></i></span><b>grillz_set.gif</b></div>
+      <div class="win-body">
+        <div class="screen"><span class="px">03</span><svg viewBox="0 0 260 150"><use href="#y-grillz"/></svg></div>
+        <h3>Chrome Six</h3>
+        <div class="rows"><div><span>metal</span><b>White gold</b></div>
+          <div><span>fit</span><b>Mould kit</b></div><div><span>stock</span><b>12 left</b></div></div>
+        <div class="bar"><span class="pr">$1,880</span><span class="add">ADD +</span></div>
+      </div></article>
+    <article class="win prod rv" style="--glow:rgba(182,255,46,.26)">
+      <div class="win-bar"><span class="dots"><i></i><i></i></span><b>signet_ring.gif</b></div>
+      <div class="win-body">
+        <div class="screen"><span class="px">04</span><svg viewBox="0 0 220 220"><use href="#y-ring"/></svg></div>
+        <h3>Deck Ring</h3>
+        <div class="rows"><div><span>metal</span><b>10K solid</b></div>
+          <div><span>stone</span><b>1.4 ct</b></div><div><span>stock</span><b>7 left</b></div></div>
+        <div class="bar"><span class="pr">$920</span><span class="add">ADD +</span></div>
+      </div></article>
+  </div>
+</section>
+
+<div class="win player rv">
+  <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>NOW_PLAYING.WAV</b><span class="grip"></span></div>
+  <div class="win-body">
+    <div class="disc"></div>
+    <div class="now">
+      <p class="crt">&gt; now playing — workshop radio</p>
+      <h4>Polishing Wheel (Side B)</h4>
+      <div class="track"><i></i></div>
+    </div>
+    <div class="ctrls"><span>◀◀</span><span>▶</span><span>■</span><span>▶▶</span></div>
+  </div>
+</div>
+
+<section class="sec" id="stats">
+  <div class="sec-head rv">
+    <p class="crt">&gt; specs.txt</p>
+    <h2>Built like the gear</h2>
+  </div>
+  <div class="stats">
+    <div class="stat rv"><b>1996</b><span>first bench</span></div>
+    <div class="stat rv"><b>188g</b><span>heaviest link</span></div>
+    <div class="stat rv"><b>24h</b><span>ships within</span></div>
+    <div class="stat rv"><b>0</b><span>plated pieces</span></div>
+  </div>
+</section>
+
+<section class="sec" id="book">
+  <div class="sec-head rv">
+    <p class="crt">&gt; guestbook.html — 3 of 1,842 entries</p>
+    <h2>Sign the guestbook</h2>
+  </div>
+  <div class="book-grid">
+    <div class="win entry rv"><div class="win-bar"><span class="dots"><i></i></span><b>entry_1837.txt</b></div>
+      <div class="win-body">
+        <div class="who"><span class="pfp">RJ</span><div><b>rj_from_queens</b><small>posted 03/14</small></div></div>
+        <p>chain came in a box with a sticker sheet and a cassette. the cassette actually plays.
+          who does that in 2026</p>
+        <p class="stars">★★★★★</p></div></div>
+    <div class="win entry rv"><div class="win-bar"><span class="dots"><i></i></span><b>entry_1840.txt</b></div>
+      <div class="win-body">
+        <div class="who"><span class="pfp">MV</span><div><b>mvdapper</b><small>posted 03/19</small></div></div>
+        <p>ordered the mixtape pendant with my sister's initials on the b-side. she cried.
+          shipping was two days.</p>
+        <p class="stars">★★★★★</p></div></div>
+    <div class="win entry rv"><div class="win-bar"><span class="dots"><i></i></span><b>entry_1842.txt</b></div>
+      <div class="win-body">
+        <div class="who"><span class="pfp">TK</span><div><b>tk_beats</b><small>posted 03/22</small></div></div>
+        <p>been buying here since the flip phone days. never once been sold something plated
+          and called solid. that's the whole review.</p>
+        <p class="stars">★★★★★</p></div></div>
+  </div>
+</section>
+
+<div class="win mail rv">
+  <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>MAILING_LIST.EXE</b><span class="grip"></span></div>
+  <div class="win-body">
+    <h3>Get on the <span>list</span></h3>
+    <p>One email when a new volume drops. No spam, no resends, unsubscribe in one click.</p>
+    <form class="mform" onsubmit="event.preventDefault();this.querySelector('button').textContent='SUBSCRIBED'">
+      <input type="email" placeholder="YOUR@EMAIL.COM" required>
+      <button type="submit">SUBMIT</button>
+    </form>
+    <p class="counter">visitors since 1996 &nbsp;<b id="hits">0000000</b></p>
+  </div>
+</div>
+
+<footer>
+  <div class="fg">
+    <div class="flogo">Ice Jewels<small>icejewels.com</small></div>
+    <div><h6>Shelf</h6><ul><li><a href="#">Chains</a></li><li><a href="#">Pendants</a></li>
+      <li><a href="#">Grillz</a></li><li><a href="#">Rings</a></li></ul></div>
+    <div><h6>Shop info</h6><ul><li><a href="#">Layaway</a></li><li><a href="#">Sizing</a></li>
+      <li><a href="#">Repairs</a></li><li><a href="#">Guestbook</a></li></ul></div>
+    <div><h6>Help</h6><ul><li><a href="#">Track order</a></li><li><a href="#">Returns</a></li>
+      <li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul></div>
+  </div>
+  <div class="fend"><span>© 2026 Ice Jewels</span><span>Best viewed at 1024×768</span><span>Concept 07 — Boombox</span></div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+document.querySelectorAll('.vhs ul').forEach(u=>u.innerHTML+=u.innerHTML);
+
+// equaliser bars
+const eq=document.getElementById('eq');
+for(let i=0;i<22;i++){const b=document.createElement('i');
+  b.style.animationDuration=(.45+Math.random()*.6).toFixed(2)+'s';
+  b.style.animationDelay=(-Math.random()).toFixed(2)+'s';eq.appendChild(b)}
+
+// hit counter
+const hits=document.getElementById('hits');let h=1284391;
+setInterval(()=>{h++;hits.textContent=String(h).padStart(7,'0')},1800);
+hits.textContent=String(h).padStart(7,'0');
+</script>
+</body>
+</html>

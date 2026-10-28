@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ice Jewels — 7 Website Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0d10; --bg-2:#131519; --card:#15181d; --edge:rgba(255,255,255,.09);
+  --edge-2:rgba(255,255,255,.2); --txt:#e9e9ec; --dim:#8b8f98; --accent:#7fd4ff;
+  --serif:'Fraunces',serif; --sans:'Archivo',sans-serif;
+  --pad:clamp(18px,4vw,60px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-weight:300;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(70% 45% at 50% -8%,rgba(127,212,255,.08),transparent 62%)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--bg)}
+.lbl{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+
+/* header */
+header{padding:clamp(48px,8vw,104px) var(--pad) clamp(28px,4vw,48px);border-bottom:1px solid var(--edge)}
+header .top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(34px,6vw,76px);line-height:1.02;letter-spacing:-.02em;
+  max-width:16ch}
+h1 em{font-style:italic;color:var(--accent)}
+.sub{margin-top:22px;max-width:62ch;color:var(--dim);font-size:15.5px}
+.meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px}
+.meta div{border-left:1px solid var(--edge);padding-left:14px}
+.meta b{display:block;font-family:var(--serif);font-size:20px;font-weight:400;margin-top:3px}
+
+/* controls */
+.bar{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:13px var(--pad);background:rgba(12,13,16,.9);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--edge);flex-wrap:wrap}
+.seg{display:flex;border:1px solid var(--edge);border-radius:99px;overflow:hidden}
+.seg button{background:none;border:none;color:var(--dim);font-family:var(--sans);font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;padding:9px 18px;cursor:pointer;transition:.25s}
+.seg button.on{background:var(--txt);color:var(--bg)}
+.seg button:not(.on):hover{color:var(--txt)}
+.bar .hint{font-size:11.5px;color:var(--dim);letter-spacing:.04em}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:clamp(18px,2.4vw,30px);
+  padding:clamp(28px,4vw,52px) var(--pad) clamp(60px,8vw,110px)}
+.card{border:1px solid var(--edge);border-radius:14px;overflow:hidden;background:var(--card);
+  display:flex;flex-direction:column;transition:border-color .4s,transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.card:hover{border-color:var(--edge-2);transform:translateY(-4px);box-shadow:0 26px 60px rgba(0,0,0,.55)}
+.frame{position:relative;overflow:hidden;background:#000;aspect-ratio:16/11;border-bottom:1px solid var(--edge)}
+.frame iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;pointer-events:none;
+  width:1440px;height:990px;transform:scale(var(--s,.28))}
+.frame.phone iframe{width:430px;height:700px;transform:scale(var(--sp,.94))}
+.frame .veil{position:absolute;inset:0;cursor:pointer;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 42%);
+  opacity:0;transition:opacity .35s;display:grid;place-items:end center;padding-bottom:18px}
+.frame:hover .veil{opacity:1}
+.frame .veil span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--edge-2);
+  padding:9px 18px;border-radius:99px;background:rgba(12,13,16,.8);backdrop-filter:blur(6px)}
+.frame .bt{position:absolute;top:12px;right:14px;z-index:3;font-size:10px;letter-spacing:.18em;
+  color:var(--bg);background:var(--accent);border-radius:99px;padding:4px 9px;font-weight:500;line-height:1.4}
+.frame .num{position:absolute;top:12px;left:14px;z-index:3;font-family:var(--serif);font-size:13px;
+  letter-spacing:.1em;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:4px 11px}
+.frame .loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase}
+
+.body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.body h2{font-family:var(--serif);font-size:25px;font-weight:400;line-height:1.1;letter-spacing:-.01em}
+.body .lane{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-top:7px}
+.body p{color:var(--dim);font-size:14px;margin-top:13px;flex:1}
+.swatches{display:flex;gap:6px;margin-top:18px}
+.swatches i{width:22px;height:22px;border-radius:5px;border:1px solid rgba(255,255,255,.14)}
+.facts{margin-top:16px;padding-top:15px;border-top:1px solid var(--edge);display:flex;flex-direction:column;gap:7px}
+.facts div{display:flex;justify-content:space-between;gap:14px;font-size:12px}
+.facts span{color:var(--dim)}
+.facts b{font-weight:400;text-align:right}
+.open{margin-top:18px;display:flex;align-items:center;justify-content:space-between;
+  border:1px solid var(--edge-2);border-radius:99px;padding:12px 18px;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;transition:.35s}
+.open:hover{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+
+/* footer note */
+footer{border-top:1px solid var(--edge);padding:clamp(40px,6vw,80px) var(--pad)}
+.note{max-width:760px}
+.note h3{font-family:var(--serif);font-size:clamp(22px,3vw,34px);font-weight:400;letter-spacing:-.01em}
+.note p{color:var(--dim);margin-top:14px;font-size:15px}
+.note ol{margin:22px 0 0;padding-left:20px;color:var(--dim);font-size:14.5px;display:flex;flex-direction:column;gap:10px}
+.note ol b{color:var(--txt);font-weight:400}
+.fend{margin-top:48px;padding-top:20px;border-top:1px solid var(--edge);display:flex;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top"><span class="lbl">Hot Ice Jewels · hoticejewels.com</span><span class="lbl">39 directions · Sept 2026</span></div>
+  <h1>Thirty-nine ways the brand could <em>look</em>.</h1>
+  <p class="sub">Each of these is a full, working homepage — not a mockup. Same brand, same products,
+    thirty-nine completely different personalities. <strong>Batch A (01–07)</strong> varies the visual
+    style. <strong>Batches B, C and D (08–32)</strong> vary the page <em>structure</em> — a catalogue, an FAQ,
+    a letter, a diagram, a manifesto, a type specimen, a bento dashboard — so they differ in what the page
+    actually does, not only how it looks. <strong>Batch D also adds the four commerce pages</strong> the set
+    was missing: a product page, a shop grid, a checkout and a visit page. <strong>Batch E (33–39) is built for the new name, Hot Ice Jewels</strong> — every page takes a position on the hot/cold axis inside the name: ice is made with fire. Batches A–D were designed under the earlier working names and still carry them.</p>
+  <p style="margin-top:18px;font-size:12.5px;letter-spacing:.04em;color:var(--dim);
+     border-left:2px solid var(--accent);padding-left:12px;max-width:66ch">
+    Design prototypes. Every price, product, statistic, quote and name is placeholder content
+    written to make the layouts judgeable — none of it is a real offer, a real review, or a real person.
+  </p>
+  <div class="meta">
+    <div><span class="lbl">Format</span><b>Standalone HTML</b></div>
+    <div><span class="lbl">Imagery</span><b>Hand-built SVG</b></div>
+    <div><span class="lbl">Dependencies</span><b>None</b></div>
+    <div><span class="lbl">Ready for</span><b>Port to Next.js</b></div>
+  </div>
+</header>
+
+<div class="bar">
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <div class="seg">
+      <button class="on" data-view="desktop">Desktop</button>
+      <button data-view="phone">Phone</button>
+    </div>
+    <div class="seg">
+      <button class="on" data-batch="all">All 39</button>
+      <button data-batch="1">A · style</button>
+      <button data-batch="2">B · structure</button>
+      <button data-batch="3">C · structure</button>
+      <button data-batch="4">D · commerce</button>
+      <button data-batch="5">E · Hot Ice</button>
+    </div>
+  </div>
+  <span class="hint">Previews are live pages — click any one to open it full size.</span>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  <div class="note">
+    <h3>How to use these</h3>
+    <p>Don't try to pick a winner on the first pass. Sort them into three piles instead.</p>
+    <ol>
+      <li><b>Gut reaction.</b> Open all seven, spend thirty seconds each, and note which two or three
+        you'd actually want your name on. Ignore the details.</li>
+      <li><b>Audience check.</b> Of those, ask which one your customer would trust with $4,000.
+        Flash sells attention; restraint sells price.</li>
+      <li><b>Pick a style and a structure separately.</b> That's what the two batches are for.
+        Vault's typography on Anatomy's diagram structure is a real option, as is Miami's palette
+        on the Ledger's stock-list shape. Name the combination and I'll build it.</li>
+    </ol>
+  </div>
+  <div class="fend"><span>Ice Jewels</span><span>Prototypes 01–07</span><span>Built with Claude Code</span></div>
+</footer>
+
+<script>
+const CONCEPTS=[
+ {n:'01',b:1,file:'prototypes/01-vault.html',name:'Vault',lane:'Cold gallery minimalism',
+  blurb:'Editorial serif, near-black, enormous negative space. Reads like a museum vitrine \u2014 the piece is the only loud thing on the page.',
+  colors:['#0a0a0b','#e8e4dc','#cfe3ee','#c9a86a'],
+  facts:[['Type','Bodoni Moda + Jost'],['Shape','Marquee hero'],['Best for','High-ticket, low volume']]},
+ {n:'02',b:1,file:'prototypes/02-miami.html',name:'Miami',lane:'Maximalist flash',
+  blurb:'Chrome and gold type, sunset gradients, tilted marquees, glow on everything. The digital version of a Miami showroom window at night.',
+  colors:['#150724','#ff2e88','#ffd23f','#22e0d6'],
+  facts:[['Type','Anton + Archivo'],['Shape','Marquee hero'],['Best for','Volume, social-led']]},
+ {n:'03',b:1,file:'prototypes/03-block.html',name:'Block',lane:'Streetwear zine',
+  blurb:'Photocopied paper, halftone product shots, tape and hazard yellow. Built on radical price honesty \u2014 metal weight printed on every tag.',
+  colors:['#e6e2d8','#14120f','#f2ff00','#e0301e'],
+  facts:[['Type','Archivo Black + Courier'],['Shape','Zine spread'],['Best for','Culture-first, trust-led']]},
+ {n:'04',b:1,file:'prototypes/04-cryo.html',name:'Cryo',lane:'Sub-zero tech lab',
+  blurb:'Glacial blues, frost particles, refraction light, real glass panels. Positions lab-grown stones as engineering rather than imitation.',
+  colors:['#03070e','#37f0ff','#7fd4ff','#dff2ff'],
+  facts:[['Type','Michroma + Sora'],['Shape','Marquee hero'],['Best for','Lab-grown, spec buyers']]},
+ {n:'05',b:1,file:'prototypes/05-drop.html',name:'Drop',lane:'Hype / drop culture',
+  blurb:'Live countdown, numbered lots, queue position, ticket-stub cards and a sold-out archive. Scarcity is the whole product architecture.',
+  colors:['#0b0b0c','#f4f2ee','#ff2d20','#8e8c88'],
+  facts:[['Type','Bebas Neue + Plex Mono'],['Shape','Countdown-led'],['Best for','Limited runs']]},
+ {n:'06',b:1,file:'prototypes/06-atelier.html',name:'Atelier',lane:'Warm deco luxury',
+  blurb:'Bone paper, gold hairlines, art-deco arches and sunbursts. Sells the bench and the maker \u2014 bespoke commissions, twelve at a time.',
+  colors:['#f7f2e8','#1d1a15','#a5813f','#e4d9c4'],
+  facts:[['Type','Cormorant + Poiret One'],['Shape','Centred arch'],['Best for','Bespoke, engagement']]},
+ {n:'07',b:1,file:'prototypes/07-boombox.html',name:'Boombox',lane:'90s / Y2K chrome',
+  blurb:'Desktop-OS windows, CRT scanlines, acid green and hot magenta, a spinning CD and a hit counter. Nostalgia played completely straight.',
+  colors:['#080415','#b6ff2e','#ff3df0','#35e8ff'],
+  facts:[['Type','Monoton + Rubik Mono'],['Shape','Window grid'],['Best for','Younger, merch crossover']]},
+
+ {n:'08',b:2,file:'prototypes/08-ledger.html',name:'Ledger',lane:'Catalogue',
+  blurb:'The whole inventory as a printed stock list \u2014 every SKU with its metal, gram weight and price per gram. No hero image; the data is the design.',
+  colors:['#f4efe4','#211d17','#a8603a','#e8dfcc'],
+  facts:[['Nav \u00b7 Footer','Masthead \u00b7 Colophon'],['Theme','Almanac \u00b7 light'],['Best for','Price-transparency play']]},
+ {n:'09',b:2,file:'prototypes/09-straight-answers.html',name:'Straight Answers',lane:'Conversational FAQ',
+  blurb:'Opens on the question everyone actually asks \u2014 is it real gold? \u2014 then answers eight more, including a section on what it will not tell you.',
+  colors:['#c9c2b4','#1a1712','#d94a2b','#ddd6c8'],
+  facts:[['Nav \u00b7 Footer','Brutal slab \u00b7 Inline rule'],['Theme','Brutal \u00b7 mid'],['Best for','Killing purchase doubt']]},
+ {n:'10',b:2,file:'prototypes/10-the-bench.html',name:'The Bench',lane:'Narrative Workflow',
+  blurb:'A commission as five numbered stages, each with what it costs, how long it takes, and exactly how much you can still change your mind about.',
+  colors:['#f2f6f0','#1f2b23','#3f7a54','#dfe9dd'],
+  facts:[['Nav \u00b7 Footer','Side rail \u00b7 Mast-headed'],['Theme','Studio \u00b7 light'],['Best for','Custom / commission work']]},
+ {n:'11',b:2,file:'prototypes/11-dear-buyer.html',name:'Dear Buyer',lane:'Letter',
+  blurb:'A founder letter, first person, no buttons above the fold. An ex-salesman explaining why he left and what this shop does differently.',
+  colors:['#f7f1e6','#2a241c','#b07a32','#ece2d0'],
+  facts:[['Nav \u00b7 Footer','Edge-aligned \u00b7 Letter close'],['Theme','Lumen \u00b7 light'],['Best for','Founder-led brand trust']]},
+ {n:'12',b:2,file:'prototypes/12-anatomy.html',name:'Anatomy',lane:'Map / Diagram',
+  blurb:'Two blueprint plates labelling every part of a chain and every part of a set stone, with linked interactive callouts and a command-K part search.',
+  colors:['#16354d','#dff0fb','#63d6ec','#26536f'],
+  facts:[['Nav \u00b7 Footer','Search pill \u00b7 Index cols'],['Theme','Grid \u00b7 blueprint'],['Best for','Education, SEO, reference']]},
+ {n:'13',b:2,file:'prototypes/13-worn.html',name:'Worn',lane:'Quote-Led',
+  blurb:'A customer quote is the headline. Publishes the critical reviews too, under their own heading, with what the shop said back to each one.',
+  colors:['#14131f','#eceaf6','#8fa8f0','#2b2940'],
+  facts:[['Nav \u00b7 Footer','Floating chip \u00b7 Statement'],['Theme','Midnight \u00b7 dark'],['Best for','Proof-led, review heavy']]},
+ {n:'14',b:2,file:'prototypes/14-the-index.html',name:'The Index',lane:'Index-First',
+  blurb:'The entire shop as one filterable monospace list. No photography, no hero, no scroll animation \u2014 the fastest path for a repeat buyer.',
+  colors:['#0d1410','#9df08f','#5ee04b','#1d2a1f'],
+  facts:[['Nav \u00b7 Footer','Terminal \u00b7 Newsletter'],['Theme','Terminal \u00b7 dark'],['Best for','Returning customers']]},
+ {n:'15',b:2,file:'prototypes/15-gram-for-gram.html',name:'Gram for Gram',lane:'Stat-Led',
+  blurb:'One number is the hero: the published price per gram. Below it, a real build sheet for one chain worked through line by line, margin included.',
+  colors:['#eef1f7','#1b202e','#2b5ce0','#d8def0'],
+  facts:[['Nav \u00b7 Footer','Three-section \u00b7 Marquee'],['Theme','Cobalt \u00b7 light'],['Best for','Comparison shoppers']]},
+ {n:'16',b:2,file:'prototypes/16-two-sides.html',name:'Two Sides',lane:'Split Studio',
+  blurb:'Five diptychs: what you get told in a jeweller shop, beside what is actually going on. Riso duotone, alternating sides down the page.',
+  colors:['#e8dcc4','#2b2018','#e0632c','#3f5ba8'],
+  facts:[['Nav \u00b7 Footer','Banner+retract \u00b7 Statement'],['Theme','Riso \u00b7 mid'],['Best for','Challenger positioning']]},
+ {n:'17',b:2,file:'prototypes/17-close-up.html',name:'Close Up',lane:'Feature Stack',
+  blurb:'Four increasing magnifications \u2014 10x to 120x \u2014 on an ordinary stock piece, sticky-synced to the scroll. Shows the scratches too.',
+  colors:['#1c1512','#f2ece4','#e08a3c','#2e241e'],
+  facts:[['Nav \u00b7 Footer','Scroll-morph \u00b7 Marquee'],['Theme','Sport \u00b7 dark'],['Best for','Quality / craft proof']]}
+,
+
+ {n:'18',b:3,file:'prototypes/18-the-archive.html',name:'The Archive',lane:'Portfolio Grid',
+  blurb:'Ninety-one past commissions in a filterable grid, each with its lead time and what it cost \u2014 including the ones that ran over. Mega-menu nav.',
+  colors:['#f0f2f7','#1b1f2b','#4a5a80','#dde1eb'],
+  facts:[['Nav \u00b7 Footer','Mega-menu \u00b7 Index cols'],['Theme','Editorial \u00b7 light'],['Best for','Commission-led sales']]},
+ {n:'19',b:3,file:'prototypes/19-melt-value.html',name:'Melt Value',lane:'Manifesto',
+  blurb:'Six theses about what jewellery is actually worth, set as a poster, ending in the operational rules the shop runs by as a result.',
+  colors:['#1e1416','#f2ece6','#e0452e','#3a2a2c'],
+  facts:[['Nav \u00b7 Footer','Floating pill \u00b7 Poster'],['Theme','Manifesto \u00b7 dark'],['Best for','Challenger brand voice']]},
+ {n:'20',b:3,file:'prototypes/20-engraving.html',name:'Engraving',lane:'Type Specimen',
+  blurb:'The six engraving cuts, each drawn as an SVG stroke path rather than set as type \u2014 because engraving is a cut line, not a filled letterform.',
+  colors:['#f7f3e9','#2b2620','#a07a3a','#e8e0cd'],
+  facts:[['Nav \u00b7 Footer','Wordmark+2 \u00b7 Colophon'],['Theme','Specimen \u00b7 light'],['Best for','Personalisation upsell']]},
+ {n:'21',b:3,file:'prototypes/21-owners.html',name:'Owners',lane:'Ecosystem Index',
+  blurb:'Four discovery surfaces over owner-submitted photos \u2014 featured, latest, by city, and by how long it has actually been worn.',
+  colors:['#20151d','#f4eaf1','#f09ac4','#3a2634'],
+  facts:[['Nav \u00b7 Footer','Filter pill \u00b7 Newsletter'],['Theme','Bloom \u00b7 dark'],['Best for','Community, UGC']]},
+ {n:'22',b:3,file:'prototypes/22-the-repair-log.html',name:'The Repair Log',lane:'Long Document',
+  blurb:'A year of repairs kept as a running workshop journal, dated and unedited \u2014 including three entries where the bench got it wrong.',
+  colors:['#f4f6fa','#1a1e28','#3f5a8a','#dfe4ee'],
+  facts:[['Nav \u00b7 Footer','\u2318K only \u00b7 Ledger close'],['Theme','Newsprint \u00b7 light'],['Best for','Proving a service promise']]},
+ {n:'23',b:3,file:'prototypes/23-plates.html',name:'Plates',lane:'Photographic',
+  blurb:'Five full-bleed drawn plates, one per fold, with the text demoted to a corner annotation. Look before you read.',
+  colors:['#101822','#eef4f8','#5fd0e8','#e0a83c'],
+  facts:[['Nav \u00b7 Footer','Chip \u00b7 Numeral marquee'],['Theme','Carnival \u00b7 dark'],['Best for','Lookbook without photos']]},
+ {n:'24',b:3,file:'prototypes/24-measure.html',name:'Measure',lane:'Workbench',
+  blurb:'Four measuring stations \u2014 chain, ring, grillz, cuff \u2014 with a live length picker that shows where each sits on a torso.',
+  colors:['#f9f4ee','#2b211c','#d4643c','#efe3d6'],
+  facts:[['Nav \u00b7 Footer','Right rail \u00b7 Unit legend'],['Theme','Hum \u00b7 light'],['Best for','Cutting returns']]},
+ {n:'25',b:3,file:'prototypes/25-the-counter.html',name:'The Counter',lane:'Bento Grid',
+  blurb:'The shop at a glance in nine irregular tiles \u2014 today\u2019s gold fix, what is on the scale, the repair queue, the next free bench hour.',
+  colors:['#dfe8dc','#1e2a22','#3f7a54','#c9d8c4'],
+  facts:[['Nav \u00b7 Footer','Masthead \u00b7 Mast-headed'],['Theme','Garden \u00b7 mid'],['Best for','Locals, repeat footfall']]}
+,
+
+ {n:'26',b:4,file:'prototypes/26-solid.html',name:'Solid',lane:'Marquee Hero',
+  blurb:'One word fills the entire first screen. Below the fold the page turns into a numbered index of what that word commits the shop to.',
+  colors:['#f2ece0','#2b261e','#a8823c','#e2d8c6'],
+  facts:[['Nav \u00b7 Footer','Edge-aligned \u00b7 Mast-headed'],['Theme','Atelier \u00b7 light'],['Best for','A brand line, held']]},
+ {n:'27',b:4,file:'prototypes/27-house-marks.html',name:'House Marks',lane:'Type Specimen',
+  blurb:'The five punches struck into every solid piece, drawn at forty times size, with what each one actually says.',
+  colors:['#1b1626','#ece8f5','#b79df0','#332b47'],
+  facts:[['Nav \u00b7 Footer','Wordmark+2 \u00b7 Colophon'],['Theme','Aurora \u00b7 dark'],['Best for','Authenticity story']]},
+ {n:'28',b:4,file:'prototypes/28-build-it.html',name:'Build It',lane:'Component Playground',
+  blurb:'A working chain configurator. Five choices, a live drawn preview, and a price that recomputes from gram weight as you change your mind.',
+  colors:['#fbf6f3','#2a201c','#e0603a','#f0e2da'],
+  facts:[['Nav \u00b7 Footer','Floating pill \u00b7 Inline rule'],['Theme','Coral \u00b7 light'],['Best for','Configurable products']]},
+ {n:'29',b:4,file:'prototypes/29-the-piece.html',name:'The Piece',lane:'Bespoke \u2014 product page',
+  blurb:'A full PDP: sticky buy rail, three drawn views, a spec table, and the arithmetic showing exactly where the price comes from.',
+  colors:['#231d16','#f0e9dd','#c99a54','#3a2f24'],
+  facts:[['Nav \u00b7 Footer','Scroll-morph \u00b7 Index cols'],['Theme','custom \u00b7 bronze'],['Best for','The page that sells']]},
+ {n:'30',b:4,file:'prototypes/30-the-floor.html',name:'The Floor',lane:'Bespoke \u2014 shop grid',
+  blurb:'A working shop: sticky filter rail, live result count, four sort orders, quick-add, and a price-per-gram on every card.',
+  colors:['#f0f3f8','#1d222c','#3d62a8','#dde3ee'],
+  facts:[['Nav \u00b7 Footer','Mega-menu \u00b7 Newsletter'],['Theme','custom \u00b7 slate'],['Best for','Browsing with a budget']]},
+ {n:'31',b:4,file:'prototypes/31-the-bag.html',name:'The Bag',lane:'Bespoke \u2014 checkout',
+  blurb:'Cart and checkout with working quantity steppers, a live free-shipping threshold in the banner, and a receipt-shaped footer.',
+  colors:['#eef4f3','#1b2426','#3fa88a','#dde9e6'],
+  facts:[['Nav \u00b7 Footer','Banner+retract \u00b7 Receipt'],['Theme','custom \u00b7 mint'],['Best for','The last, hardest step']]},
+ {n:'32',b:4,file:'prototypes/32-come-in.html',name:'Come In',lane:'Bespoke \u2014 visit',
+  blurb:'A visit page with a live open/closed state read from the hours table, a hand-drawn approach plan, and what you can do without buying anything.',
+  colors:['#261d16','#f2e9df','#d97742','#3a2b21'],
+  facts:[['Nav \u00b7 Footer','Brutal slab \u00b7 Hours marquee'],['Theme','custom \u00b7 terracotta'],['Best for','Physical shop, local trade']]},
+ {n:'33',b:5,file:'../prototypes/33-quench.html',name:'Quench',lane:'Bespoke — thermal band descent',
+  blurb:'The flagship for the new name. Five self-themed temperature bands, 1200°C at the top to −18°C at the footer — the page cools as you scroll, with a live temperature readout in the nav.',
+  colors:['#1f120c','#ff7a1f','#f4efe8','#16253a'],
+  facts:[['Nav · Footer','Floating pill (live temp) · Statement'],['Theme','custom · quench'],['Best for','Homepage, brand story in one scroll']]},
+ {n:'34',b:5,file:'../prototypes/34-twelve-hundred.html',name:'1200°',lane:'Narrative workflow — thermal ladder',
+  blurb:'How a chain is made, told as six real bench temperatures — melt, pour, three solders, anneal, pickle, quench. The side rail is a thermometer.',
+  colors:['#1c120c','#f07a2a','#ffd36a','#79c4d8'],
+  facts:[['Nav · Footer','Side rail thermometer · Colophon'],['Theme','custom · forge'],['Best for','Proving it is actually made']]},
+ {n:'35',b:5,file:'../prototypes/35-hot-list.html',name:'The Hot List',lane:'Index-first — filterable board',
+  blurb:'What is moving right now, filterable by heat and stock. Heat is three hand-set words, not a fake sales counter — and the page says so.',
+  colors:['#1a0f0d','#f0443a','#ffa94d','#6fb6cf'],
+  facts:[['Nav · Footer','Terminal prompt · Restock marquee'],['Theme','custom · ember'],['Best for','Returning buyers, drops']]},
+ {n:'36',b:5,file:'../prototypes/36-cold-room.html',name:'Cold Room',lane:'Long document — verification',
+  blurb:'How to check ice before you trust it: stamps, karat vs fineness, weight, settings, the edge test, and a tick-box checklist. Searchable clauses.',
+  colors:['#f3f7fa','#1a2a3d','#1f7fb5','#e0692e'],
+  facts:[['Nav · Footer','Search pill · Index columns'],['Theme','custom · coldroom'],['Best for','Trust, anti-plated positioning']]},
+ {n:'37',b:5,file:'../prototypes/37-two-temperatures.html',name:'Two Temperatures',lane:'Split studio — draggable seam',
+  blurb:'One chain, drawn twice: glowing on the bench and frosted on the neck. Drag the seam to mix them. Explains the name in a single gesture.',
+  colors:['#26120a','#ff8a2b','#e6f0f7','#2f6fc4'],
+  facts:[['Nav · Footer','Banner + retract · Inline rule'],['Theme','custom · split'],['Best for','First impression, social links']]},
+ {n:'38',b:5,file:'../prototypes/38-poured.html',name:'Poured',lane:'Manifesto — interactive cross-section',
+  blurb:'Solid vs plated, argued with a cut-through diagram. Slide from day one to five years and watch the plating wear off one link while the other stays gold.',
+  colors:['#1a150d','#e8c15a','#a8792e','#6f8f7d'],
+  facts:[['Nav · Footer','Edge-aligned · Letter close'],['Theme','custom · bullion'],['Best for','Justifying solid-gold pricing']]},
+ {n:'39',b:5,file:'../prototypes/39-run-it-hot.html',name:'Run It Hot',lane:'Playground — commission by deadline',
+  blurb:'Commission a piece against a date. Drag the turnaround and the whole page shifts from cold blue to forge orange as the queue goes standard → priority → rush.',
+  colors:['#f5f7fb','#2f63c9','#e8662a','#1c2330'],
+  facts:[['Nav · Footer','Morphs to live brief · Slot alert'],['Theme','custom · runhot'],['Best for','Custom orders, deadlines']]}
+
+];
+
+const grid=document.getElementById('grid');
+grid.innerHTML=CONCEPTS.map(c=>`
+<article class="card" data-batch="${c.b}">
+  <div class="frame" data-file="${c.file}">
+    <span class="num">${c.n}</span><span class="bt">${["","A","B","C","D","E"][c.b]}</span>
+    <span class="loading">Loading preview…</span>
+    <iframe loading="lazy" src="${c.file}" title="${c.name} preview" tabindex="-1" scrolling="no"></iframe>
+    <a class="veil" href="${c.file}" target="_blank" rel="noopener"><span>Open full page ↗</span></a>
+  </div>
+  <div class="body">
+    <h2>${c.name}</h2>
+    <p class="lane">${c.lane}</p>
+    <p>${c.blurb}</p>
+    <div class="swatches">${c.colors.map(x=>`<i style="background:${x}"></i>`).join('')}</div>
+    <div class="facts">${c.facts.map(f=>`<div><span>${f[0]}</span><b>${f[1]}</b></div>`).join('')}</div>
+    <a class="open" href="${c.file}" target="_blank" rel="noopener"><span>Open concept ${c.n}</span><span>↗</span></a>
+  </div>
+</article>`).join('');
+
+// hide the loading label once each frame paints
+grid.querySelectorAll('iframe').forEach(f=>{
+  f.addEventListener('load',()=>{const l=f.parentElement.querySelector('.loading');if(l)l.remove()});
+});
+
+// scale previews to fit their box, for both viewport widths
+function rescale(){
+  document.querySelectorAll('.frame').forEach(fr=>{
+    const w=fr.clientWidth;
+    fr.style.setProperty('--s',(w/1440).toFixed(4));
+    fr.style.setProperty('--sp',(w/430).toFixed(4));
+  });
+}
+addEventListener('resize',rescale);rescale();
+
+// batch filter
+document.querySelectorAll('button[data-batch]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    const want=b.dataset.batch;
+    document.querySelectorAll('.card').forEach(c=>{c.hidden = want!=='all' && c.dataset.batch!==want});
+    rescale();
+  });
+});
+
+// desktop / phone toggle
+document.querySelectorAll('button[data-view]').forEach(b=>b.addEventListener('click',()=>{
+  b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+  const phone=b.dataset.view==='phone';
+  document.querySelectorAll('.frame').forEach(fr=>{
+    fr.classList.toggle('phone',phone);
+    fr.style.aspectRatio=phone?'430/700':'16/11';
+  });
+  rescale();
+}));
+</script>
+</body>
+</html>

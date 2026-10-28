@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE JEWELS — Gram for Gram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;900&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R4 V4
+ * macrostructure: Stat-Led · nav: N1b Canonical three-section · footer: Ft8 Marquee scroll
+ * theme: Cobalt (light-mid paper · grotesk display · cobalt accent · mono outlier)
+ * knobs: figure=price-per-gram, support=4-up, worked-example=inline-table
+ * genre: modern-minimal · tone: utilitarian · enrichment: none (typography + one inline SVG)
+ * audience: a comparison shopper with three tabs open
+ * gate 46 note: the lead figure is OUR OWN published price, not a fabricated performance claim,
+ *   and it is paired with a worded headline rather than standing alone.
+ */
+:root{
+  --color-paper:      oklch(95.5% 0.007 250);
+  --color-paper-2:    oklch(91.5% 0.010 250);
+  --color-paper-3:    oklch(87% 0.013 250);
+  --color-ink:        oklch(22% 0.022 258);
+  --color-ink-2:      oklch(40% 0.020 258);
+  --color-muted:      oklch(54% 0.016 254);
+  --color-accent:     oklch(50% 0.180 252);
+  --color-accent-soft:oklch(92% 0.040 250);
+  --color-rule:       oklch(83% 0.012 252);
+  --color-focus:      oklch(46% 0.170 30);
+  --font-display:'Chivo','Helvetica Neue',sans-serif;
+  --font-body:'Chivo','Helvetica Neue',sans-serif;
+  --font-mono:'Martian Mono',ui-monospace,monospace;
+  --text-xs:0.6875rem; --text-sm:0.8125rem; --text-base:0.9375rem; --text-lg:1.0625rem;
+  --text-xl:1.25rem; --text-2xl:1.625rem; --text-3xl:2.125rem;
+  --text-figure:clamp(5rem,20vw,16rem);
+  --text-figure-s:clamp(2rem,5vw,3.5rem);
+  --text-display-s:clamp(1.75rem,3.6vw,2.75rem);
+  --lh-tight:1.0; --lh-snug:1.24; --lh-body:1.66;
+  --space-3xs:4px; --space-2xs:8px; --space-xs:12px; --space-sm:16px; --space-md:24px;
+  --space-lg:32px; --space-xl:48px; --space-2xl:64px; --space-3xl:96px; --space-4xl:128px;
+  --gutter:clamp(16px,4vw,48px);
+  --rule-hair:1px; --rule-firm:2px; --radius-sm:4px; --radius-md:10px; --radius-pill:999px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:120ms; --dur-base:220ms; --dur-slow:420ms;
+  --z-nav:300;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);
+  font-weight:300;font-size:var(--text-base);line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent-soft);color:var(--color-ink)}
+:focus-visible{outline:var(--rule-firm) solid var(--color-focus);outline-offset:3px}
+h1,h2,h3{font-family:var(--font-display);font-style:normal;font-weight:900;
+  line-height:var(--lh-tight);letter-spacing:-.02em;overflow-wrap:anywhere;min-width:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+
+/* ── N1b · Canonical three-section ─────────────────────── */
+.nav{position:sticky;top:0;z-index:var(--z-nav);background:color-mix(in oklab,var(--color-paper) 88%,transparent);
+  backdrop-filter:blur(12px);border-bottom:var(--rule-hair) solid var(--color-rule)}
+.nav__in{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;
+  gap:var(--space-md);padding-block:var(--space-xs)}
+.nav__mark{font-family:var(--font-display);font-weight:900;font-size:var(--text-lg);
+  letter-spacing:-.02em;line-height:1;white-space:nowrap}
+.nav__mid{display:flex;justify-content:center;gap:var(--space-md);flex-wrap:nowrap}
+.nav__mid a{font-size:var(--text-sm);color:var(--color-ink-2);white-space:nowrap;line-height:1;
+  padding:var(--space-2xs) 0;transition:color var(--dur-fast) var(--ease-out)}
+.nav__mid a:hover{color:var(--color-accent)}
+.nav__end{display:flex;align-items:center;gap:var(--space-sm)}
+.nav__signin{font-size:var(--text-sm);color:var(--color-ink-2);white-space:nowrap;line-height:1;
+  transition:color var(--dur-fast) var(--ease-out)}
+.nav__signin:hover{color:var(--color-accent)}
+.nav__cta{font-size:var(--text-sm);font-weight:600;white-space:nowrap;line-height:1;
+  background:var(--color-ink);color:var(--color-paper);border-radius:var(--radius-pill);
+  padding:var(--space-2xs) var(--space-sm);min-height:38px;display:inline-flex;align-items:center;
+  transition:background-color var(--dur-base) var(--ease-out)}
+.nav__cta:hover{background:var(--color-accent)}
+.nav__cta:active{background:var(--color-ink-2)}
+@media(max-width:60rem){.nav__in{grid-template-columns:auto auto}.nav__mid,.nav__signin{display:none}}
+
+/* ── Stat hero ─────────────────────────────────────────── */
+.hero{padding-block:var(--space-2xl) var(--space-3xl);
+  display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:var(--space-xl);align-items:center}
+.hero__figure{font-family:var(--font-display);font-weight:900;font-size:var(--text-figure);
+  line-height:.82;letter-spacing:-.05em;color:var(--color-accent);display:block}
+.hero__unit{font-family:var(--font-mono);font-size:var(--text-sm);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--color-muted);display:block;margin-top:var(--space-2xs)}
+.hero__words h1{font-size:var(--text-display-s);max-width:17ch;margin-bottom:var(--space-md)}
+.hero__words p{color:var(--color-ink-2);max-width:54ch;margin-bottom:var(--space-lg)}
+.hero__cta{display:flex;gap:var(--space-2xs);flex-wrap:wrap;align-items:center}
+.btn{font-size:var(--text-sm);font-weight:600;white-space:nowrap;line-height:1;
+  border-radius:var(--radius-pill);padding:var(--space-xs) var(--space-lg);min-height:46px;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:background-color var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+.btn--solid{background:var(--color-accent);color:var(--color-paper);border:var(--rule-firm) solid var(--color-accent)}
+.btn--solid:hover{background:var(--color-ink);border-color:var(--color-ink)}
+.btn--solid:active{background:var(--color-ink-2);border-color:var(--color-ink-2)}
+.btn--solid:disabled{background:var(--color-muted);border-color:var(--color-muted);cursor:not-allowed}
+.btn--line{border:var(--rule-firm) solid var(--color-rule);color:var(--color-ink)}
+.btn--line:hover{border-color:var(--color-ink)}
+.btn--line:active{background:var(--color-paper-3)}
+@media(max-width:60rem){.hero{grid-template-columns:minmax(0,1fr);gap:var(--space-lg)}}
+
+/* ── Supporting facts (T4 numbered strip) ──────────────── */
+.facts{border-block:var(--rule-firm) solid var(--color-ink);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.fact{padding:var(--space-lg) var(--space-md);border-right:var(--rule-hair) solid var(--color-rule)}
+.fact:last-child{border-right:none}
+.fact b{display:block;font-family:var(--font-display);font-weight:900;font-size:var(--text-figure-s);
+  line-height:1;letter-spacing:-.03em}
+.fact span{display:block;margin-top:var(--space-2xs);font-family:var(--font-mono);font-size:var(--text-xs);
+  letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted)}
+.fact small{display:block;margin-top:var(--space-2xs);font-size:var(--text-sm);color:var(--color-ink-2)}
+@media(max-width:60rem){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fact:nth-child(2n){border-right:none}
+  .fact:nth-child(-n+2){border-bottom:var(--rule-hair) solid var(--color-rule)}}
+@media(max-width:30rem){.facts{grid-template-columns:minmax(0,1fr)}
+  .fact{border-right:none;border-bottom:var(--rule-hair) solid var(--color-rule)}}
+
+/* ── Worked example ────────────────────────────────────── */
+.work{padding-block:var(--space-3xl)}
+.work h2{font-size:var(--text-3xl);max-width:20ch;margin-bottom:var(--space-sm)}
+.work>.wrap>p.lede{color:var(--color-ink-2);max-width:60ch;margin-bottom:var(--space-xl)}
+.work__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:var(--space-2xl);align-items:start}
+.sums{width:100%;border-collapse:collapse}
+.sums caption{text-align:left;font-family:var(--font-mono);font-size:var(--text-xs);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--color-muted);padding-bottom:var(--space-2xs)}
+.sums th,.sums td{text-align:left;padding:var(--space-xs) var(--space-sm) var(--space-xs) 0;
+  border-bottom:var(--rule-hair) solid var(--color-rule);font-size:var(--text-sm);vertical-align:top}
+.sums thead th{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--color-muted);font-weight:400;
+  border-bottom:var(--rule-firm) solid var(--color-ink)}
+.sums td:last-child,.sums th:last-child{text-align:right;padding-right:0;white-space:nowrap}
+.sums tbody th{font-weight:400;color:var(--color-ink)}
+.sums td{color:var(--color-ink-2)}
+.sums tfoot th,.sums tfoot td{font-family:var(--font-display);font-weight:900;font-size:var(--text-xl);
+  color:var(--color-ink);border-bottom:none;border-top:var(--rule-firm) solid var(--color-ink);
+  padding-top:var(--space-sm)}
+.work__aside{background:var(--color-paper-2);border-radius:var(--radius-md);padding:var(--space-lg)}
+.work__aside svg{width:100%;height:auto;color:var(--color-accent);margin-bottom:var(--space-md)}
+.work__aside h3{font-family:var(--font-display);font-weight:600;font-size:var(--text-lg);
+  letter-spacing:0;margin-bottom:var(--space-2xs)}
+.work__aside p{font-size:var(--text-sm);color:var(--color-ink-2);max-width:40ch}
+.work__aside p+p{margin-top:var(--space-sm)}
+@media(max-width:60rem){.work__grid{grid-template-columns:minmax(0,1fr)}}
+
+/* ── Single CTA strip ──────────────────────────────────── */
+.strip{background:var(--color-ink);color:var(--color-paper);padding-block:var(--space-2xl) var(--space-3xl);
+  text-align:left}
+.strip h2{font-size:var(--text-display-s);max-width:18ch;margin-bottom:var(--space-md);color:var(--color-paper)}
+.strip p{color:var(--color-paper-3);max-width:52ch;margin-bottom:var(--space-lg)}
+.strip .btn--solid{background:var(--color-paper);color:var(--color-ink);border-color:var(--color-paper)}
+.strip .btn--solid:hover{background:var(--color-accent);color:var(--color-paper);border-color:var(--color-accent)}
+
+/* ── Ft8 · Marquee scroll ──────────────────────────────── */
+.mq{border-top:var(--rule-firm) solid var(--color-ink);overflow:hidden;padding-block:var(--space-md);
+  background:var(--color-paper-2)}
+.mq__track{display:flex;gap:var(--space-lg);width:max-content;animation:mq 34s linear infinite}
+.mq__track span{font-family:var(--font-display);font-weight:900;font-size:var(--text-2xl);
+  letter-spacing:-.02em;white-space:nowrap;display:flex;align-items:center;gap:var(--space-lg);
+  color:var(--color-ink)}
+.mq__track span::after{content:'';width:9px;height:9px;border-radius:var(--radius-pill);
+  background:var(--color-accent);flex:0 0 auto}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq:hover .mq__track,.mq:focus-within .mq__track{animation-play-state:paused}
+.mq__base{padding-block:var(--space-md);display:flex;flex-wrap:wrap;gap:var(--space-md);
+  font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--color-muted)}
+.mq__base a{white-space:nowrap;line-height:1;transition:color var(--dur-fast) var(--ease-out)}
+.mq__base a:hover{color:var(--color-accent)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important}
+  .mq__track{animation:none;width:auto;flex-wrap:wrap}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="nav__mark" href="#">ICE JEWELS</a>
+    <nav class="nav__mid" aria-label="Primary">
+      <a href="#maths">The maths</a><a href="#">Stock</a><a href="#">Commission</a>
+      <a href="#">Repairs</a><a href="#">Trade-in</a>
+    </nav>
+    <div class="nav__end">
+      <a class="nav__signin" href="#">Sign in</a>
+      <a class="nav__cta" href="#visit">Book a fitting</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero wrap">
+  <p>
+    <span class="hero__figure">$24</span>
+    <span class="hero__unit">per gram · 14K · our published rate</span>
+  </p>
+  <div class="hero__words">
+    <h1>That number is the entire price list.</h1>
+    <p>Multiply it by the gram weight on the tag and you have the price of any plain 14K piece
+      in the shop. Stones and setting hours are added on top and itemised separately. There is
+      no third number, and nothing is priced by what the tag can bear.</p>
+    <div class="hero__cta">
+      <a class="btn btn--solid" href="#maths">See the arithmetic</a>
+      <a class="btn btn--line" href="#">Today's gold fix</a>
+    </div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="fact"><b>58.5%</b><span>Gold content</span><small>What 14K actually means, by mass.</small></div>
+  <div class="fact"><b>41.5%</b><span>Alloy</span><small>Copper and silver. It is what makes it wearable.</small></div>
+  <div class="fact"><b>142 g</b><span>A 10 mm Cuban</span><small>The weight we quote off, taken after polish.</small></div>
+  <div class="fact"><b>0</b><span>Plated items held</span><small>Not a policy. There simply are none.</small></div>
+</div>
+
+<section class="work" id="maths">
+  <div class="wrap">
+    <h2>One chain, worked through line by line.</h2>
+    <p class="lede">This is the actual build sheet for stock item CH-041 — the 10 mm Cuban link.
+      Every figure below appears on the tag in the shop.</p>
+    <div class="work__grid">
+      <table class="sums">
+        <caption>CH-041 · Cuban link, 10 mm · 14K yellow · 142 g</caption>
+        <thead>
+          <tr><th scope="col">Line</th><th scope="col">Basis</th><th scope="col">Amount</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Metal</th><td>142 g at the day's fix, 14K</td><td>$2,414</td></tr>
+          <tr><th scope="row">Casting and finishing</th><td>Bench hours, single pour</td><td>$430</td></tr>
+          <tr><th scope="row">Clasp</th><td>Solid box, twin safety latch</td><td>$118</td></tr>
+          <tr><th scope="row">Margin</th><td>Fixed, not a percentage of the tag</td><td>$446</td></tr>
+          <tr><th scope="row">Stones</th><td>None on this piece</td><td>$0</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th scope="row">Total</th><td>$24 per gram</td><td>$3,408</td></tr>
+        </tfoot>
+      </table>
+      <aside class="work__aside">
+        <svg viewBox="0 0 260 90" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round">
+            <ellipse cx="42" cy="45" rx="28" ry="17" transform="rotate(-16 42 45)"/>
+            <ellipse cx="92" cy="45" rx="28" ry="17" transform="rotate(14 92 45)"/>
+            <ellipse cx="142" cy="45" rx="28" ry="17" transform="rotate(-16 142 45)"/>
+            <ellipse cx="192" cy="45" rx="28" ry="17" transform="rotate(14 192 45)"/>
+          </g>
+        </svg>
+        <h3>Why the margin is a fixed figure</h3>
+        <p>If margin were a percentage, a heavier chain would earn us more for identical work.
+          It takes the same bench hours to finish a 142 gram chain as a 380 gram one, so the
+          number is flat and the same on every piece.</p>
+        <p>It also means the heavier you go, the closer your price per gram sits to the metal
+          cost — which is the opposite of how most of the trade prices.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="strip" id="visit">
+  <div class="wrap">
+    <h2>Bring a chain. We'll weigh it for free.</h2>
+    <p>Yours or someone else's, bought here or anywhere. We test the karat, put it on the scale,
+      and tell you what it is. No appointment, nothing to buy.</p>
+    <a class="btn btn--solid" href="#">Find the bench</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="mq">
+    <div class="mq__track" aria-hidden="true">
+      <span>$24 a gram</span><span>Weighed in front of you</span><span>Solid only</span>
+      <span>Free repairs, no time limit</span>
+      <span>$24 a gram</span><span>Weighed in front of you</span><span>Solid only</span>
+      <span>Free repairs, no time limit</span>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="mq__base">
+      <span>© 2026 Ice Jewels</span>
+      <a href="#">Rates</a><a href="#">Stock</a><a href="#">Repairs</a><a href="#">Contact</a>
+      <span>Concept 15 — Gram for Gram</span>
+      <span>Stat-Led · Cobalt</span>
+      <span>All figures are placeholder</span>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

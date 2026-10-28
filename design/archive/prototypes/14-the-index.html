@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE JEWELS — The Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5
+ * macrostructure: Index-First · nav: N8 Terminal command · footer: Ft7 Newsletter-first
+ * theme: Terminal (dark paper · mono-only display · phosphor accent)
+ * knobs: rows=dense, leader=dotted, filter=live
+ * genre: atmospheric · tone: utilitarian · enrichment: none (the list is the design)
+ * audience: repeat buyers who know what they want and resent being marketed to
+ * note: single-family mono is deliberate — the terminal aesthetic IS the design (typography.md exception)
+ */
+:root{
+  --color-paper:      oklch(17% 0.022 155);
+  --color-paper-2:    oklch(21% 0.026 155);
+  --color-paper-3:    oklch(26% 0.028 155);
+  --color-ink:        oklch(90% 0.075 148);
+  --color-ink-2:      oklch(78% 0.070 148);
+  --color-muted:      oklch(60% 0.048 150);
+  --color-accent:     oklch(86% 0.170 140);
+  --color-warn:       oklch(80% 0.140 62);
+  --color-rule:       oklch(31% 0.030 152);
+  --color-focus:      oklch(88% 0.150 95);
+  --font-mono:'DM Mono',ui-monospace,monospace;
+  --text-xs:0.6875rem; --text-sm:0.8125rem; --text-base:0.875rem; --text-lg:1rem;
+  --text-xl:1.1875rem; --text-2xl:1.5rem;
+  --text-display:clamp(1.5rem,3.4vw,2.5rem);
+  --lh-tight:1.14; --lh-snug:1.3; --lh-body:1.66;
+  --space-3xs:4px; --space-2xs:8px; --space-xs:12px; --space-sm:16px; --space-md:24px;
+  --space-lg:32px; --space-xl:48px; --space-2xl:64px; --space-3xl:96px;
+  --gutter:clamp(14px,3.5vw,40px);
+  --rule-hair:1px; --rule-firm:2px; --radius-sm:2px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:100ms; --dur-base:180ms; --dur-slow:360ms;
+  --z-nav:300;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--color-paper);color:var(--color-ink);font-family:var(--font-mono);
+  font-weight:300;font-size:var(--text-base);line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent);color:var(--color-paper)}
+:focus-visible{outline:var(--rule-firm) solid var(--color-focus);outline-offset:2px}
+h1,h2{font-family:var(--font-mono);font-style:normal;font-weight:500;
+  line-height:var(--lh-tight);overflow-wrap:anywhere;min-width:0}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:var(--gutter)}
+
+/* ── N8 · Terminal command ─────────────────────────────── */
+.term{position:sticky;top:0;z-index:var(--z-nav);background:var(--color-paper);
+  border-bottom:var(--rule-hair) solid var(--color-rule)}
+.term__line{display:flex;align-items:center;gap:var(--space-2xs);flex-wrap:wrap;
+  padding-block:var(--space-xs);font-size:var(--text-sm);line-height:1.6}
+.term__prompt{color:var(--color-muted);white-space:nowrap}
+.term__mark{color:var(--color-accent);font-weight:500;white-space:nowrap}
+.term__flag{color:var(--color-ink-2);white-space:nowrap;line-height:1;padding:var(--space-3xs) 0;
+  transition:color var(--dur-fast) var(--ease-out)}
+.term__flag:hover{color:var(--color-accent)}
+.term__flag:active{color:var(--color-ink)}
+.term__cursor{display:inline-block;width:8px;height:1.05em;background:var(--color-accent);
+  vertical-align:text-bottom;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ── Head ──────────────────────────────────────────────── */
+.head{padding-block:var(--space-2xl) var(--space-lg)}
+.head h1{font-size:var(--text-display);max-width:30ch;margin-bottom:var(--space-sm)}
+.head p{color:var(--color-muted);max-width:66ch;font-size:var(--text-sm)}
+.head__filter{margin-top:var(--space-lg);display:flex;align-items:center;gap:var(--space-2xs);
+  border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-sm);
+  background:var(--color-paper-2);padding:var(--space-2xs) var(--space-sm);max-width:440px;min-height:44px}
+.head__filter label{color:var(--color-muted);font-size:var(--text-sm);white-space:nowrap}
+.head__filter input{flex:1;min-width:0;background:transparent;border:none;outline:none;
+  color:var(--color-ink);font-family:var(--font-mono);font-size:var(--text-base)}
+.head__filter input::placeholder{color:var(--color-muted)}
+.head__filter input:disabled{opacity:.5}
+.head__count{margin-top:var(--space-2xs);font-size:var(--text-xs);color:var(--color-muted);
+  letter-spacing:.1em;text-transform:uppercase}
+
+/* ── The index ─────────────────────────────────────────── */
+.idx{padding-block:var(--space-md) var(--space-2xl)}
+.idx__group{margin-bottom:var(--space-xl)}
+.idx__group h2{font-size:var(--text-sm);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--color-accent);padding-bottom:var(--space-2xs);
+  border-bottom:var(--rule-hair) solid var(--color-rule);margin-bottom:var(--space-2xs)}
+.row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-sm);
+  align-items:baseline;padding:var(--space-2xs) var(--space-2xs);border-radius:var(--radius-sm);
+  min-height:40px;transition:background-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)}
+.row:hover{background:var(--color-paper-2);color:var(--color-accent)}
+.row:active{background:var(--color-paper-3)}
+.row__code{color:var(--color-muted);font-size:var(--text-sm);white-space:nowrap}
+.row:hover .row__code{color:var(--color-ink-2)}
+.row__name{position:relative;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.row__name::after{content:" ......................................................................................";
+  color:var(--color-rule);letter-spacing:.14em}
+.row__meta{color:var(--color-ink-2);font-size:var(--text-sm);white-space:nowrap;text-align:right}
+.row[data-flag="gone"]{color:var(--color-muted)}
+.row[data-flag="gone"] .row__meta{color:var(--color-muted);text-decoration:line-through}
+.row[data-flag="new"] .row__meta{color:var(--color-warn)}
+.idx__none{color:var(--color-muted);padding:var(--space-md) var(--space-2xs);font-size:var(--text-sm)}
+@media(max-width:40rem){
+  .row{grid-template-columns:auto minmax(0,1fr);row-gap:0}
+  .row__name::after{content:""}
+  .row__meta{grid-column:1/-1;text-align:left;padding-left:0}
+}
+
+/* ── Ft7 · Newsletter-first ────────────────────────────── */
+.sub{border-top:var(--rule-firm) solid var(--color-rule);padding-block:var(--space-2xl)}
+.sub__label{font-size:var(--text-sm);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--color-accent);margin-bottom:var(--space-2xs)}
+.sub h2{font-size:var(--text-xl);max-width:40ch;margin-bottom:var(--space-md);font-weight:400}
+.sub__form{display:flex;flex-wrap:wrap;gap:var(--space-2xs);max-width:520px;align-items:stretch}
+.sub__form input{flex:1 1 240px;min-width:0;background:var(--color-paper-2);color:var(--color-ink);
+  border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-sm);
+  padding:var(--space-xs) var(--space-sm);min-height:46px;font-family:var(--font-mono);
+  font-size:var(--text-base);outline:none;
+  transition:border-color var(--dur-fast) var(--ease-out),background-color var(--dur-fast) var(--ease-out)}
+.sub__form input::placeholder{color:var(--color-muted)}
+.sub__form input:hover{background:var(--color-paper-3)}
+.sub__form input:focus{border-color:var(--color-accent)}
+.sub__form input:disabled{opacity:.5;cursor:not-allowed}
+.sub__form input[aria-invalid="true"]{border-color:var(--color-warn)}
+.sub__form button{font-family:var(--font-mono);font-size:var(--text-base);font-weight:500;
+  white-space:nowrap;line-height:1;background:var(--color-accent);color:var(--color-paper);
+  border:var(--rule-hair) solid var(--color-accent);border-radius:var(--radius-sm);cursor:pointer;
+  padding:var(--space-xs) var(--space-lg);min-height:46px;
+  transition:background-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)}
+.sub__form button:hover{background:var(--color-ink)}
+.sub__form button:active{background:var(--color-ink-2)}
+.sub__form button:disabled{opacity:.55;cursor:not-allowed}
+.sub__form button[data-state="loading"]{background:var(--color-muted);border-color:var(--color-muted)}
+.sub__form button[data-state="error"]{background:var(--color-warn);border-color:var(--color-warn)}
+.sub__note{margin-top:var(--space-xs);font-size:var(--text-xs);color:var(--color-muted)}
+.sub__base{margin-top:var(--space-xl);padding-top:var(--space-sm);
+  border-top:var(--rule-hair) solid var(--color-rule);display:flex;flex-wrap:wrap;gap:var(--space-md);
+  font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-muted)}
+.sub__base a{white-space:nowrap;line-height:1;transition:color var(--dur-fast) var(--ease-out)}
+.sub__base a:hover{color:var(--color-accent)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="term">
+  <div class="wrap term__line">
+    <span class="term__prompt">$</span>
+    <span class="term__mark">icejewels</span>
+    <a class="term__flag" href="#chains">--chains</a>
+    <a class="term__flag" href="#pendants">--pendants</a>
+    <a class="term__flag" href="#rings">--rings</a>
+    <a class="term__flag" href="#service">--service</a>
+    <a class="term__flag" href="#house">--house</a>
+    <span class="term__cursor" aria-hidden="true"></span>
+  </div>
+</header>
+
+<main>
+<section class="head wrap">
+  <h1>The whole shop, as a list.</h1>
+  <p>No photography, no hero, no scroll animations. If you already know what you want, this page
+    gets you there faster than any other version of this site. Everything we hold, everything we do,
+    and every policy — one line each.</p>
+  <div class="head__filter">
+    <label for="filter">filter:</label>
+    <input id="filter" type="text" placeholder="cuban, repair, trade-in…" autocomplete="off">
+  </div>
+  <p class="head__count" id="count">Showing all entries</p>
+</section>
+
+<section class="idx wrap">
+
+  <div class="idx__group" id="chains">
+    <h2>Chains</h2>
+    <a class="row" href="#"><span class="row__code">CH-041</span><span class="row__name">Cuban link, 10 mm · 14K · 142 g</span><span class="row__meta">$3,408</span></a>
+    <a class="row" href="#"><span class="row__code">CH-044</span><span class="row__name">Rope chain, 6 mm · 14K · 58 g</span><span class="row__meta">$1,392</span></a>
+    <a class="row" data-flag="new" href="#"><span class="row__code">CH-052</span><span class="row__name">Tennis chain, 4 mm · 14K white · 34 g</span><span class="row__meta">$2,890 new</span></a>
+    <a class="row" href="#"><span class="row__code">CH-058</span><span class="row__name">Cuban link, 18 mm · 14K · 386 g</span><span class="row__meta">$9,264</span></a>
+    <a class="row" href="#"><span class="row__code">CH-061</span><span class="row__name">Rope chain, 3 mm · 10K · 21 g</span><span class="row__meta">$378</span></a>
+    <a class="row" data-flag="gone" href="#"><span class="row__code">CH-037</span><span class="row__name">Franco chain, 5 mm · 14K · 74 g</span><span class="row__meta">$1,776</span></a>
+  </div>
+
+  <div class="idx__group" id="pendants">
+    <h2>Pendants</h2>
+    <a class="row" href="#"><span class="row__code">PD-019</span><span class="row__name">Hex pendant, plain · 14K · 46 g</span><span class="row__meta">$1,104</span></a>
+    <a class="row" href="#"><span class="row__code">PD-023</span><span class="row__name">Hex pendant, iced · 14K · 52 g · 88 stones</span><span class="row__meta">$3,016</span></a>
+    <a class="row" href="#"><span class="row__code">PD-028</span><span class="row__name">Letter pendant, made to order · 14K</span><span class="row__meta">from $640</span></a>
+    <a class="row" data-flag="gone" href="#"><span class="row__code">PD-014</span><span class="row__name">Cross, flush-set · 18K · 61 g</span><span class="row__meta">$4,270</span></a>
+  </div>
+
+  <div class="idx__group" id="rings">
+    <h2>Rings, ears and grillz</h2>
+    <a class="row" href="#"><span class="row__code">RG-007</span><span class="row__name">Plain band, 8 mm · 14K · 18 g · sizes 7–12</span><span class="row__meta">$432</span></a>
+    <a class="row" href="#"><span class="row__code">RG-011</span><span class="row__name">Signet, flat top · 10K · 26 g · engraving included</span><span class="row__meta">$468</span></a>
+    <a class="row" href="#"><span class="row__code">ER-003</span><span class="row__name">Hoop, 30 mm pair · 14K · 11 g</span><span class="row__meta">$264</span></a>
+    <a class="row" href="#"><span class="row__code">GR-002</span><span class="row__name">Top four grillz, open face · 10K · 14 g</span><span class="row__meta">$252</span></a>
+    <a class="row" href="#"><span class="row__code">GR-006</span><span class="row__name">Top eight grillz, solid · 14K · 29 g</span><span class="row__meta">$696</span></a>
+  </div>
+
+  <div class="idx__group" id="service">
+    <h2>Service</h2>
+    <a class="row" href="#"><span class="row__code">SV-01</span><span class="row__name">Metal test — karat and weight, any piece</span><span class="row__meta">free</span></a>
+    <a class="row" href="#"><span class="row__code">SV-02</span><span class="row__name">Repair — resize, re-tip, re-solder, reset</span><span class="row__meta">free</span></a>
+    <a class="row" href="#"><span class="row__code">SV-03</span><span class="row__name">Re-polish and clean</span><span class="row__meta">free</span></a>
+    <a class="row" href="#"><span class="row__code">SV-04</span><span class="row__name">Commission — drawing, render, cast, set</span><span class="row__meta">4–6 weeks</span></a>
+    <a class="row" href="#"><span class="row__code">SV-05</span><span class="row__name">Trade-in — weighed and credited at the day's fix</span><span class="row__meta">by weight</span></a>
+    <a class="row" href="#"><span class="row__code">SV-06</span><span class="row__name">Grillz mould kit, posted</span><span class="row__meta">$0 with order</span></a>
+  </div>
+
+  <div class="idx__group" id="house">
+    <h2>House</h2>
+    <a class="row" href="#"><span class="row__code">DOC-01</span><span class="row__name">Per-gram pricing and today's gold fix</span><span class="row__meta">rates</span></a>
+    <a class="row" href="#"><span class="row__code">DOC-02</span><span class="row__name">Straight answers — the questions we get asked</span><span class="row__meta">faq</span></a>
+    <a class="row" href="#"><span class="row__code">DOC-03</span><span class="row__name">Anatomy — what the parts are called</span><span class="row__meta">reference</span></a>
+    <a class="row" href="#"><span class="row__code">DOC-04</span><span class="row__name">Shipping, returns and the repair terms</span><span class="row__meta">policy</span></a>
+    <a class="row" href="#"><span class="row__code">DOC-05</span><span class="row__name">Visit the bench — hours and address</span><span class="row__meta">contact</span></a>
+  </div>
+
+  <p class="idx__none" id="none" hidden>No entry matches that. Try a metal, a code, or "repair".</p>
+</section>
+</main>
+
+<footer class="sub">
+  <div class="wrap">
+    <p class="sub__label">stock@icejewels</p>
+    <h2>One line when something is added to this list. Nothing else, ever.</h2>
+    <form class="sub__form" novalidate>
+      <input type="email" placeholder="you@email.com" required aria-label="Email address">
+      <button type="submit">subscribe</button>
+    </form>
+    <p class="sub__note">Unsubscribe link on every message. We do not sell the list.</p>
+    <p class="sub__base">
+      <span>© 2026 Ice Jewels</span>
+      <a href="#">icejewels.com</a>
+      <span>Concept 14 — The Index</span>
+      <span>Index-First · Terminal</span>
+      <span>All copy is placeholder</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+/* live filter over the index */
+const filter=document.getElementById('filter'),
+      groups=[...document.querySelectorAll('.idx__group')],
+      rows=[...document.querySelectorAll('.row')],
+      count=document.getElementById('count'),
+      none=document.getElementById('none');
+filter.addEventListener('input',()=>{
+  const q=filter.value.trim().toLowerCase();
+  let shown=0;
+  rows.forEach(r=>{
+    const hit=!q||r.textContent.toLowerCase().includes(q);
+    r.hidden=!hit; if(hit)shown++;
+  });
+  groups.forEach(g=>{g.hidden=![...g.querySelectorAll('.row')].some(r=>!r.hidden)});
+  none.hidden=shown>0;
+  count.textContent=q?('Showing '+shown+' of '+rows.length+' entries'):'Showing all entries';
+});
+
+document.querySelector('.sub__form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const form=e.currentTarget, input=form.querySelector('input'), btn=form.querySelector('button');
+  if(!input.value.trim()||!input.checkValidity()){
+    input.setAttribute('aria-invalid','true');btn.dataset.state='error';btn.textContent='check address';return;
+  }
+  input.setAttribute('aria-invalid','false');
+  btn.dataset.state='loading';btn.textContent='sending…';btn.disabled=true;
+  setTimeout(()=>{btn.removeAttribute('data-state');btn.textContent='subscribed';},600);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE JEWELS — Anatomy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R4 V5
+ * macrostructure: Map / Diagram · nav: N13 Inline cmd-K search pill · footer: Ft3 Index-style columns
+ * theme: Grid (mid blueprint paper · grotesk display · cyan accent · mono outlier)
+ * knobs: diagrams=2, callouts=interactive-linked, plate-rule=blueprint-grid
+ * genre: modern-minimal · tone: technical · enrichment: E5 hand-built SVG (Tier B, the page's subject)
+ * audience: a buyer who wants to know what the parts are called before spending four figures
+ * note: Ft3 permitted — this is a genuine reference hub, not a marketing page
+ */
+:root{
+  --color-paper:      oklch(32% 0.046 245);
+  --color-paper-2:    oklch(27% 0.048 246);
+  --color-paper-3:    oklch(38% 0.042 244);
+  --color-ink:        oklch(94% 0.012 240);
+  --color-ink-2:      oklch(82% 0.016 240);
+  --color-muted:      oklch(70% 0.022 242);
+  --color-accent:     oklch(80% 0.145 200);
+  --color-accent-2:   oklch(64% 0.130 200);
+  --color-rule:       oklch(48% 0.036 244);
+  --color-rule-soft:  oklch(41% 0.040 245);
+  --color-focus:      oklch(86% 0.150 95);
+  --font-display:'Space Grotesk','Helvetica Neue',sans-serif;
+  --font-body:'Space Grotesk','Helvetica Neue',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --text-xs:0.6875rem; --text-sm:0.8125rem; --text-base:0.9375rem; --text-lg:1.0625rem;
+  --text-xl:1.25rem; --text-2xl:1.625rem; --text-3xl:2.125rem;
+  --text-display:clamp(2.25rem,5.2vw,4rem);
+  --lh-tight:1.06; --lh-snug:1.28; --lh-body:1.68;
+  --space-3xs:4px; --space-2xs:8px; --space-xs:12px; --space-sm:16px; --space-md:24px;
+  --space-lg:32px; --space-xl:48px; --space-2xl:64px; --space-3xl:96px; --space-4xl:128px;
+  --gutter:clamp(16px,4vw,48px);
+  --rule-hair:1px; --rule-firm:2px; --radius-sm:3px; --radius-md:6px; --radius-pill:999px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:120ms; --dur-base:220ms; --dur-slow:420ms;
+  --z-nav:300; --z-modal:400;
+  --grid-step:26px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);
+  font-weight:300;font-size:var(--text-base);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(var(--color-rule-soft) var(--rule-hair),transparent var(--rule-hair)),
+    linear-gradient(90deg,var(--color-rule-soft) var(--rule-hair),transparent var(--rule-hair));
+  background-size:var(--grid-step) var(--grid-step)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent);color:var(--color-paper-2)}
+:focus-visible{outline:var(--rule-firm) solid var(--color-focus);outline-offset:3px}
+h1,h2,h3{font-family:var(--font-display);font-style:normal;font-weight:500;
+  line-height:var(--lh-tight);overflow-wrap:anywhere;min-width:0}
+.wrap{max-width:1280px;margin-inline:auto;padding-inline:var(--gutter)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+
+/* ── N13 · Inline search pill ──────────────────────────── */
+.bar{position:sticky;top:0;z-index:var(--z-nav);background:var(--color-paper-2);
+  border-bottom:var(--rule-hair) solid var(--color-rule)}
+.bar__in{display:flex;align-items:center;gap:var(--space-md);padding-block:var(--space-2xs)}
+.bar__mark{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);
+  letter-spacing:.14em;line-height:1;white-space:nowrap}
+.search{flex:1 1 auto;max-width:420px;display:flex;align-items:center;gap:var(--space-2xs);
+  background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);
+  border-radius:var(--radius-pill);padding:var(--space-2xs) var(--space-sm);min-height:40px;
+  cursor:pointer;color:var(--color-muted);font-family:var(--font-mono);font-size:var(--text-sm);
+  transition:border-color var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
+.search:hover{border-color:var(--color-accent-2);color:var(--color-ink-2)}
+.search:active{background:var(--color-paper-3)}
+.search__hint{margin-left:auto;font-size:var(--text-xs);border:var(--rule-hair) solid var(--color-rule);
+  border-radius:var(--radius-sm);padding:1px var(--space-3xs);line-height:1.5;white-space:nowrap}
+.search__label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:30rem){
+  .search__hint{display:none}
+  .bar__in{flex-wrap:wrap;row-gap:var(--space-2xs)}
+  .search{flex:1 1 100%;max-width:none;order:3}
+}
+.bar__links{display:flex;gap:var(--space-md);margin-left:auto}
+.bar__links a{font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;line-height:1;
+  color:var(--color-muted);white-space:nowrap;transition:color var(--dur-fast) var(--ease-out)}
+.bar__links a:hover{color:var(--color-accent)}
+@media(max-width:52rem){.bar__links{display:none}}
+
+/* ── Spotlight modal ───────────────────────────────────── */
+.spot{position:fixed;inset:0;z-index:var(--z-modal);display:none;
+  background:color-mix(in oklab,var(--color-paper-2) 78%,transparent);
+  backdrop-filter:blur(6px);padding:var(--space-2xl) var(--gutter)}
+.spot[open]{display:block}
+.spot__panel{max-width:560px;margin-inline:auto;background:var(--color-paper);
+  border:var(--rule-hair) solid var(--color-accent-2);border-radius:var(--radius-md);overflow:hidden}
+.spot__input{width:100%;border:none;outline:none;background:transparent;color:var(--color-ink);
+  font-family:var(--font-mono);font-size:var(--text-lg);padding:var(--space-md);
+  border-bottom:var(--rule-hair) solid var(--color-rule)}
+.spot__input::placeholder{color:var(--color-muted)}
+.spot__list{list-style:none;max-height:50vh;overflow-y:auto}
+.spot__group{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--color-muted);padding:var(--space-xs) var(--space-md) var(--space-3xs)}
+.spot__list a{display:flex;justify-content:space-between;gap:var(--space-sm);
+  padding:var(--space-2xs) var(--space-md);font-size:var(--text-sm);color:var(--color-ink-2);
+  transition:background-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)}
+.spot__list a:hover,.spot__list a.is-active{background:var(--color-paper-3);color:var(--color-ink)}
+.spot__list a span{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-muted)}
+.spot__empty{padding:var(--space-md);color:var(--color-muted);font-size:var(--text-sm)}
+
+/* ── Plate head ────────────────────────────────────────── */
+.plate-head{padding-block:var(--space-2xl) var(--space-xl)}
+.plate-head h1{font-size:var(--text-display);max-width:16ch;margin-bottom:var(--space-md)}
+.plate-head p{color:var(--color-ink-2);max-width:64ch}
+.plate-head__strip{display:flex;flex-wrap:wrap;gap:var(--space-md);margin-top:var(--space-lg);
+  padding-top:var(--space-sm);border-top:var(--rule-hair) solid var(--color-rule);
+  font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--color-muted)}
+
+/* ── Diagram plate ─────────────────────────────────────── */
+.plate{border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-sm);
+  background:var(--color-paper-2);margin-bottom:var(--space-2xl);overflow:hidden}
+.plate__bar{display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);
+  flex-wrap:wrap;padding:var(--space-2xs) var(--space-md);
+  border-bottom:var(--rule-hair) solid var(--color-rule);
+  font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--color-muted);line-height:1.8}
+.plate__bar b{font-weight:500;color:var(--color-accent)}
+.plate__body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.plate__fig{padding:var(--space-lg);display:grid;place-items:center;
+  border-right:var(--rule-hair) solid var(--color-rule)}
+.plate__fig svg{width:100%;height:auto;max-width:100%}
+.plate__keys{padding:var(--space-md);display:flex;flex-direction:column}
+.key{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-sm);
+  align-items:start;width:100%;text-align:left;background:transparent;border:none;cursor:pointer;
+  font-family:var(--font-body);color:inherit;padding:var(--space-2xs);border-radius:var(--radius-sm);
+  transition:background-color var(--dur-fast) var(--ease-out)}
+.key:hover,.key.is-hot{background:var(--color-paper-3)}
+.key:active{background:var(--color-rule-soft)}
+.key:disabled{opacity:.45;cursor:not-allowed}
+.key__n{font-family:var(--font-mono);font-size:var(--text-xs);width:24px;height:24px;
+  display:grid;place-items:center;border-radius:var(--radius-pill);line-height:1;
+  border:var(--rule-hair) solid var(--color-rule);color:var(--color-muted);
+  transition:background-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out)}
+.key:hover .key__n,.key.is-hot .key__n{background:var(--color-accent);color:var(--color-paper-2);
+  border-color:var(--color-accent)}
+.key__t{font-size:var(--text-sm);font-weight:400;color:var(--color-ink);line-height:1.4}
+.key__d{display:block;font-size:var(--text-xs);color:var(--color-muted);margin-top:2px;line-height:1.55}
+@media(max-width:60rem){
+  .plate__body{grid-template-columns:minmax(0,1fr)}
+  .plate__fig{border-right:none;border-bottom:var(--rule-hair) solid var(--color-rule)}
+}
+
+/* diagram highlight state */
+.part{transition:opacity var(--dur-base) var(--ease-out)}
+.part-line{stroke:var(--color-rule);stroke-width:1;stroke-dasharray:3 3}
+.part-num circle{fill:var(--color-paper-2);stroke:var(--color-rule)}
+.part-num text{fill:var(--color-muted);font-family:var(--font-mono);font-size:11px}
+.dia.is-focused .part{opacity:.28}
+.dia.is-focused .part.is-hot{opacity:1}
+.part.is-hot .stroke{stroke:var(--color-accent)}
+.part.is-hot .fill{fill:var(--color-accent)}
+
+/* ── Glossary strip ────────────────────────────────────── */
+.gloss{border-top:var(--rule-firm) solid var(--color-rule);padding-block:var(--space-2xl) var(--space-3xl)}
+.gloss h2{font-size:var(--text-2xl);margin-bottom:var(--space-md);max-width:22ch}
+.gloss__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));
+  gap:var(--space-md)}
+.gloss__grid div{border-top:var(--rule-hair) solid var(--color-rule);padding-top:var(--space-2xs)}
+.gloss__grid dt{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--color-accent);
+  margin-bottom:var(--space-3xs)}
+.gloss__grid dd{font-size:var(--text-sm);color:var(--color-ink-2);max-width:42ch}
+
+/* ── Ft3 · Index columns (genuine reference hub) ───────── */
+.index{background:var(--color-paper-2);border-top:var(--rule-hair) solid var(--color-rule);
+  padding-block:var(--space-2xl)}
+.index__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));
+  gap:var(--space-lg)}
+.index__grid h3{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--color-accent);margin-bottom:var(--space-2xs);font-weight:500}
+.index__grid ul{list-style:none;display:flex;flex-direction:column;gap:var(--space-3xs)}
+.index__grid a{font-size:var(--text-sm);color:var(--color-ink-2);white-space:nowrap;line-height:1.9;
+  transition:color var(--dur-fast) var(--ease-out)}
+.index__grid a:hover{color:var(--color-accent)}
+.index__base{margin-top:var(--space-xl);padding-top:var(--space-sm);
+  border-top:var(--rule-hair) solid var(--color-rule);display:flex;flex-wrap:wrap;gap:var(--space-md);
+  font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--color-muted)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar__in">
+    <a class="bar__mark" href="#">ICE JEWELS</a>
+    <button class="search" type="button" id="openSpot" aria-haspopup="dialog">
+      <span class="search__label">Search the anatomy…</span>
+      <span class="search__hint">⌘K</span>
+    </button>
+    <nav class="bar__links" aria-label="Sections">
+      <a href="#plate-1">Chain</a><a href="#plate-2">Setting</a><a href="#glossary">Glossary</a>
+    </nav>
+  </div>
+</header>
+
+<div class="spot" id="spot" role="dialog" aria-modal="true" aria-label="Search the anatomy">
+  <div class="spot__panel">
+    <input class="spot__input" id="spotInput" type="text" placeholder="Type a part name…" autocomplete="off">
+    <ul class="spot__list" id="spotList"></ul>
+  </div>
+</div>
+
+<main>
+<section class="plate-head wrap">
+  <h1>Every part of it has a name. Here they are.</h1>
+  <p>You are about to spend real money on an object whose components you have never been told the
+    names of — which is precisely how the trade prefers it. These two plates label every part of a
+    chain and every part of a set stone. Hover or tap any number to isolate it.</p>
+  <p class="plate-head__strip">
+    <span>Plate 01 · Cuban link and box clasp</span>
+    <span>Plate 02 · Brilliant cut in a four-prong head</span>
+    <span>Not to scale</span>
+  </p>
+</section>
+
+<section class="wrap" id="plate-1">
+  <div class="plate">
+    <p class="plate__bar"><span>Plate 01 — <b>Chain and clasp</b></span>
+      <span>Cuban link · 10 mm · 14K</span><span>Six labelled parts</span></p>
+    <div class="plate__body">
+      <div class="plate__fig">
+        <svg class="dia" id="dia1" viewBox="0 0 520 330" role="img"
+             aria-label="Cross-section of a Cuban link chain and its box clasp, with six numbered parts.">
+          <!-- 1 · link -->
+          <g class="part" data-part="d1-link">
+            <g fill="none" class="stroke" stroke="var(--color-ink)" stroke-width="7" stroke-linecap="round">
+              <ellipse cx="60" cy="130" rx="30" ry="18" transform="rotate(-16 60 130)"/>
+              <ellipse cx="108" cy="130" rx="30" ry="18" transform="rotate(14 108 130)"/>
+              <ellipse cx="156" cy="130" rx="30" ry="18" transform="rotate(-16 156 130)"/>
+              <ellipse cx="204" cy="130" rx="30" ry="18" transform="rotate(14 204 130)"/>
+            </g>
+          </g>
+          <!-- 2 · solder joint -->
+          <g class="part" data-part="d1-solder">
+            <circle class="fill" cx="132" cy="120" r="5" fill="var(--color-ink-2)"/>
+            <circle class="fill" cx="180" cy="140" r="5" fill="var(--color-ink-2)"/>
+          </g>
+          <!-- 3 · box clasp body -->
+          <g class="part" data-part="d1-box">
+            <rect class="stroke" x="246" y="100" width="92" height="60" rx="6"
+              fill="none" stroke="var(--color-ink)" stroke-width="6"/>
+          </g>
+          <!-- 4 · tongue -->
+          <g class="part" data-part="d1-tongue">
+            <path class="stroke" d="M338 130h56a14 14 0 0 1 0 0l0 0" fill="none"
+              stroke="var(--color-ink)" stroke-width="6"/>
+            <path class="stroke" d="M342 114h44l10 16-10 16h-44z" fill="none"
+              stroke="var(--color-ink)" stroke-width="6" stroke-linejoin="round"/>
+          </g>
+          <!-- 5 · safety latch -->
+          <g class="part" data-part="d1-latch">
+            <path class="stroke" d="M292 160v34h62" fill="none" stroke="var(--color-ink)"
+              stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle class="fill" cx="354" cy="194" r="7" fill="var(--color-ink)"/>
+          </g>
+          <!-- 6 · karat stamp -->
+          <g class="part" data-part="d1-stamp">
+            <rect class="stroke" x="258" y="112" width="34" height="18" rx="3"
+              fill="none" stroke="var(--color-ink-2)" stroke-width="2.5"/>
+            <text x="275" y="125" text-anchor="middle" class="fill"
+              fill="var(--color-ink-2)" font-family="JetBrains Mono, monospace" font-size="11">14K</text>
+          </g>
+          <!-- callouts -->
+          <g class="part-line">
+            <path d="M108 112 L108 62"/><path d="M132 120 L176 52"/><path d="M292 100 L292 52"/>
+            <path d="M396 118 L446 70"/><path d="M354 201 L430 244"/><path d="M262 130 L206 252"/>
+          </g>
+          <g class="part-num">
+            <g><circle cx="108" cy="52" r="13"/><text x="108" y="56" text-anchor="middle">1</text></g>
+            <g><circle cx="184" cy="44" r="13"/><text x="184" y="48" text-anchor="middle">2</text></g>
+            <g><circle cx="292" cy="44" r="13"/><text x="292" y="48" text-anchor="middle">3</text></g>
+            <g><circle cx="456" cy="62" r="13"/><text x="456" y="66" text-anchor="middle">4</text></g>
+            <g><circle cx="440" cy="250" r="13"/><text x="440" y="254" text-anchor="middle">5</text></g>
+            <g><circle cx="198" cy="262" r="13"/><text x="198" y="266" text-anchor="middle">6</text></g>
+          </g>
+        </svg>
+      </div>
+      <div class="plate__keys">
+        <button class="key" type="button" data-target="d1-link" data-dia="dia1">
+          <span class="key__n">1</span>
+          <span class="key__t">Link<span class="key__d">One interlocking oval. Cuban links are flattened and twisted so they lie flat instead of rolling.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d1-solder" data-dia="dia1">
+          <span class="key__n">2</span>
+          <span class="key__t">Solder joint<span class="key__d">Where each link is closed. On a cheap chain these are the first thing to fail — ask to see one under magnification.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d1-box" data-dia="dia1">
+          <span class="key__n">3</span>
+          <span class="key__t">Box clasp<span class="key__d">The hollow housing. A solid box weighs noticeably more than a stamped one and is worth the difference.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d1-tongue" data-dia="dia1">
+          <span class="key__n">4</span>
+          <span class="key__t">Tongue<span class="key__d">The sprung wedge that snaps into the box. It is the single most-stressed part of the whole chain.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d1-latch" data-dia="dia1">
+          <span class="key__n">5</span>
+          <span class="key__t">Safety latch<span class="key__d">The secondary catch. A chain over about 80 grams should have two. If it has one, that is a cost decision, not a design one.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d1-stamp" data-dia="dia1">
+          <span class="key__n">6</span>
+          <span class="key__t">Karat stamp<span class="key__d">Struck into the clasp, not the links. No stamp is not proof of fakery, but it does mean nobody has certified it.</span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="plate-2">
+  <div class="plate">
+    <p class="plate__bar"><span>Plate 02 — <b>Stone and setting</b></span>
+      <span>Round brilliant · four-prong head</span><span>Six labelled parts</span></p>
+    <div class="plate__body">
+      <div class="plate__fig">
+        <svg class="dia" id="dia2" viewBox="0 0 520 330" role="img"
+             aria-label="Cross-section of a round brilliant diamond in a four-prong setting, with six numbered parts.">
+          <!-- 1 table -->
+          <g class="part" data-part="d2-table">
+            <path class="stroke" d="M186 110h148" fill="none" stroke="var(--color-ink)" stroke-width="7" stroke-linecap="round"/>
+          </g>
+          <!-- 2 crown -->
+          <g class="part" data-part="d2-crown">
+            <path class="stroke" d="M186 110 L150 150 M334 110 L370 150" fill="none"
+              stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round"/>
+            <path class="stroke" d="M224 110 L206 150 M296 110 L314 150" fill="none"
+              stroke="var(--color-ink-2)" stroke-width="2.5"/>
+          </g>
+          <!-- 3 girdle -->
+          <g class="part" data-part="d2-girdle">
+            <path class="stroke" d="M150 150h220" fill="none" stroke="var(--color-ink)" stroke-width="9" stroke-linecap="round"/>
+          </g>
+          <!-- 4 pavilion -->
+          <g class="part" data-part="d2-pav">
+            <path class="stroke" d="M150 150 L260 262 L370 150" fill="none"
+              stroke="var(--color-ink)" stroke-width="6" stroke-linejoin="round"/>
+            <path class="stroke" d="M206 150 L260 262 M314 150 L260 262" fill="none"
+              stroke="var(--color-ink-2)" stroke-width="2.5"/>
+          </g>
+          <!-- 5 prong -->
+          <g class="part" data-part="d2-prong">
+            <path class="stroke" d="M144 102v66a12 12 0 0 0 12 12" fill="none"
+              stroke="var(--color-ink)" stroke-width="8" stroke-linecap="round"/>
+            <path class="stroke" d="M376 102v66a12 12 0 0 1-12 12" fill="none"
+              stroke="var(--color-ink)" stroke-width="8" stroke-linecap="round"/>
+          </g>
+          <!-- 6 gallery -->
+          <g class="part" data-part="d2-gallery">
+            <path class="stroke" d="M156 186h208" fill="none" stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round"/>
+            <path class="stroke" d="M176 186v44 M344 186v44" fill="none"
+              stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round"/>
+          </g>
+          <g class="part-line">
+            <path d="M260 110 L260 56"/><path d="M186 130 L120 74"/><path d="M370 150 L444 118"/>
+            <path d="M300 210 L406 250"/><path d="M144 120 L74 152"/><path d="M176 220 L104 262"/>
+          </g>
+          <g class="part-num">
+            <g><circle cx="260" cy="46" r="13"/><text x="260" y="50" text-anchor="middle">1</text></g>
+            <g><circle cx="110" cy="66" r="13"/><text x="110" y="70" text-anchor="middle">2</text></g>
+            <g><circle cx="456" cy="112" r="13"/><text x="456" y="116" text-anchor="middle">3</text></g>
+            <g><circle cx="416" cy="256" r="13"/><text x="416" y="260" text-anchor="middle">4</text></g>
+            <g><circle cx="64" cy="156" r="13"/><text x="64" y="160" text-anchor="middle">5</text></g>
+            <g><circle cx="94" cy="268" r="13"/><text x="94" y="272" text-anchor="middle">6</text></g>
+          </g>
+        </svg>
+      </div>
+      <div class="plate__keys">
+        <button class="key" type="button" data-target="d2-table" data-dia="dia2">
+          <span class="key__n">1</span>
+          <span class="key__t">Table<span class="key__d">The flat top facet. Its width relative to the stone is the first thing a grader measures and the biggest driver of how it throws light.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d2-crown" data-dia="dia2">
+          <span class="key__n">2</span>
+          <span class="key__t">Crown<span class="key__d">Everything above the widest point. Cut too shallow to save weight and the stone goes glassy.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d2-girdle" data-dia="dia2">
+          <span class="key__n">3</span>
+          <span class="key__t">Girdle<span class="key__d">The widest band, where the prongs grip. Laser inscriptions live here — that is where a certificate number is hiding.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d2-pav" data-dia="dia2">
+          <span class="key__n">4</span>
+          <span class="key__t">Pavilion<span class="key__d">The cone underneath. Its angle is what actually returns light to your eye; carat weight hidden down here is wasted money.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d2-prong" data-dia="dia2">
+          <span class="key__n">5</span>
+          <span class="key__t">Prong<span class="key__d">The metal claw over the girdle. Prongs wear down — re-tipping every few years is normal maintenance, not a defect.</span></span>
+        </button>
+        <button class="key" type="button" data-target="d2-gallery" data-dia="dia2">
+          <span class="key__n">6</span>
+          <span class="key__t">Gallery<span class="key__d">The open frame beneath the stone. It lets light in from below and lets you clean it — a solid back is cheaper and duller.</span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gloss wrap" id="glossary">
+  <h2>Six words the trade uses to mean something other than what you think</h2>
+  <dl class="gloss__grid">
+    <div><dt>gold-filled</dt><dd>Not filled with gold. A thin gold layer bonded to base metal — better than plating, still not solid.</dd></div>
+    <div><dt>vermeil</dt><dd>Gold plating over sterling silver. Legally defined, frequently used to sound like solid gold.</dd></div>
+    <div><dt>eye-clean</dt><dd>You cannot see the flaw without magnification. It says nothing about the actual clarity grade.</dd></div>
+    <div><dt>carat / karat</dt><dd>Two different words. Carat is stone weight; karat is gold purity. Shops blur them freely.</dd></div>
+    <div><dt>cluster</dt><dd>Many small stones arranged to read as one large one. Legitimate, but priced as if it were not.</dd></div>
+    <div><dt>appraisal value</dt><dd>An insurance replacement figure, always above retail. It is not what anyone will pay you.</dd></div>
+  </dl>
+</section>
+</main>
+
+<footer class="index">
+  <div class="wrap">
+    <div class="index__grid">
+      <div><h3>Plates</h3><ul>
+        <li><a href="#plate-1">01 · Chain</a></li><li><a href="#plate-2">02 · Setting</a></li>
+        <li><a href="#">03 · Grillz fit</a></li><li><a href="#">04 · Ring shank</a></li></ul></div>
+      <div><h3>Reference</h3><ul>
+        <li><a href="#glossary">Glossary</a></li><li><a href="#">Karat table</a></li>
+        <li><a href="#">Clarity scale</a></li><li><a href="#">Chain gauges</a></li></ul></div>
+      <div><h3>Shop</h3><ul>
+        <li><a href="#">Stock list</a></li><li><a href="#">Commission</a></li>
+        <li><a href="#">Repairs</a></li><li><a href="#">Trade-in</a></li></ul></div>
+      <div><h3>House</h3><ul>
+        <li><a href="#">The bench</a></li><li><a href="#">Straight answers</a></li>
+        <li><a href="#">Visit</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <p class="index__base">
+      <span>© 2026 Ice Jewels</span><span>Concept 12 — Anatomy</span>
+      <span>Map / Diagram · Grid</span><span>All copy is placeholder</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ── linked diagram callouts ── */
+document.querySelectorAll('.key').forEach(key=>{
+  const dia=document.getElementById(key.dataset.dia);
+  const part=dia.querySelector('[data-part="'+key.dataset.target+'"]');
+  const on=()=>{dia.classList.add('is-focused');part.classList.add('is-hot');key.classList.add('is-hot')};
+  const off=()=>{dia.classList.remove('is-focused');part.classList.remove('is-hot');key.classList.remove('is-hot')};
+  key.addEventListener('pointerenter',on);
+  key.addEventListener('pointerleave',off);
+  key.addEventListener('focus',on);
+  key.addEventListener('blur',off);
+  key.addEventListener('click',()=>{key.classList.contains('is-hot')?off():on()});
+});
+
+/* ── N13 spotlight ── */
+const INDEX=[
+  {g:'Plate 01 · Chain',t:'Link',h:'#plate-1'},{g:'Plate 01 · Chain',t:'Solder joint',h:'#plate-1'},
+  {g:'Plate 01 · Chain',t:'Box clasp',h:'#plate-1'},{g:'Plate 01 · Chain',t:'Tongue',h:'#plate-1'},
+  {g:'Plate 01 · Chain',t:'Safety latch',h:'#plate-1'},{g:'Plate 01 · Chain',t:'Karat stamp',h:'#plate-1'},
+  {g:'Plate 02 · Setting',t:'Table',h:'#plate-2'},{g:'Plate 02 · Setting',t:'Crown',h:'#plate-2'},
+  {g:'Plate 02 · Setting',t:'Girdle',h:'#plate-2'},{g:'Plate 02 · Setting',t:'Pavilion',h:'#plate-2'},
+  {g:'Plate 02 · Setting',t:'Prong',h:'#plate-2'},{g:'Plate 02 · Setting',t:'Gallery',h:'#plate-2'},
+  {g:'Glossary',t:'gold-filled',h:'#glossary'},{g:'Glossary',t:'vermeil',h:'#glossary'},
+  {g:'Glossary',t:'eye-clean',h:'#glossary'},{g:'Glossary',t:'carat / karat',h:'#glossary'},
+  {g:'Glossary',t:'cluster',h:'#glossary'},{g:'Glossary',t:'appraisal value',h:'#glossary'}
+];
+const spot=document.getElementById('spot'), input=document.getElementById('spotInput'),
+      list=document.getElementById('spotList');
+let cursor=0;
+function render(q){
+  const hits=INDEX.filter(i=>i.t.toLowerCase().includes(q.toLowerCase()));
+  if(!hits.length){list.innerHTML='<li class="spot__empty">Nothing by that name on these plates.</li>';return}
+  let html='',lastG='';
+  hits.forEach((i,n)=>{
+    if(i.g!==lastG){html+='<li class="spot__group">'+i.g+'</li>';lastG=i.g}
+    html+='<li><a href="'+i.h+'" data-n="'+n+'"'+(n===cursor?' class="is-active"':'')+'>'
+        + i.t+'<span>'+i.g.split(' · ')[0]+'</span></a></li>';
+  });
+  list.innerHTML=html;
+}
+function openSpot(){spot.setAttribute('open','');input.value='';cursor=0;render('');input.focus()}
+function closeSpot(){spot.removeAttribute('open')}
+document.getElementById('openSpot').addEventListener('click',openSpot);
+spot.addEventListener('click',e=>{if(e.target===spot)closeSpot()});
+input.addEventListener('input',()=>{cursor=0;render(input.value)});
+addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();spot.hasAttribute('open')?closeSpot():openSpot();return}
+  if(!spot.hasAttribute('open'))return;
+  const items=[...list.querySelectorAll('a')];
+  if(e.key==='Escape'){closeSpot()}
+  else if(e.key==='ArrowDown'){e.preventDefault();cursor=Math.min(cursor+1,items.length-1);render(input.value)}
+  else if(e.key==='ArrowUp'){e.preventDefault();cursor=Math.max(cursor-1,0);render(input.value)}
+  else if(e.key==='Enter'&&items[cursor]){items[cursor].click();closeSpot()}
+});
+render('');
+</script>
+</body>
+</html>

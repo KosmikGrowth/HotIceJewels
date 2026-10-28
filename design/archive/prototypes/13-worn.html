@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE JEWELS — Worn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
+ * macrostructure: Quote-Led · nav: N2 Floating chip · footer: Ft5 Statement
+ * theme: Midnight (dark paper · geometric-sans display · periwinkle accent)
+ * knobs: hero-quote=single-huge, proof=mixed-length, criticism=published
+ * genre: atmospheric · tone: austere · enrichment: none (typography only)
+ * audience: someone who has read the marketing and wants to hear from actual owners
+ */
+:root{
+  --color-paper:      oklch(19% 0.030 272);
+  --color-paper-2:    oklch(24% 0.034 274);
+  --color-paper-3:    oklch(29% 0.036 275);
+  --color-ink:        oklch(95% 0.010 272);
+  --color-ink-2:      oklch(81% 0.015 272);
+  --color-muted:      oklch(68% 0.022 272);
+  --color-accent:     oklch(76% 0.128 258);
+  --color-accent-2:   oklch(60% 0.115 258);
+  --color-warn:       oklch(78% 0.130 62);
+  --color-rule:       oklch(34% 0.032 274);
+  --color-focus:      oklch(86% 0.140 95);
+  --font-display:'Syne','Helvetica Neue',sans-serif;
+  --font-body:'Manrope','Helvetica Neue',sans-serif;
+  --text-xs:0.6875rem; --text-sm:0.8125rem; --text-base:0.9375rem; --text-lg:1.0625rem;
+  --text-xl:1.25rem; --text-2xl:1.625rem; --text-3xl:2.125rem;
+  --text-hero:clamp(1.875rem,4.6vw,3.75rem);
+  --text-mid:clamp(1.375rem,2.6vw,2rem);
+  --lh-tight:1.08; --lh-snug:1.24; --lh-body:1.68;
+  --space-3xs:4px; --space-2xs:8px; --space-xs:12px; --space-sm:16px; --space-md:24px;
+  --space-lg:32px; --space-xl:48px; --space-2xl:64px; --space-3xl:96px; --space-4xl:128px;
+  --gutter:clamp(16px,4vw,52px);
+  --rule-hair:1px; --rule-firm:2px; --radius-sm:3px; --radius-md:10px; --radius-pill:999px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:130ms; --dur-base:230ms; --dur-slow:440ms;
+  --z-nav:300;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);
+  font-weight:300;font-size:var(--text-base);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(70% 44% at 78% 8%,color-mix(in oklab,var(--color-accent) 16%,transparent),transparent 62%)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent);color:var(--color-paper)}
+:focus-visible{outline:var(--rule-firm) solid var(--color-focus);outline-offset:3px}
+h1,h2,h3{font-family:var(--font-display);font-style:normal;font-weight:700;
+  line-height:var(--lh-tight);overflow-wrap:anywhere;min-width:0}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:var(--gutter)}
+blockquote{quotes:none}
+
+/* ── N2 · Floating chip ────────────────────────────────── */
+.chip-nav{position:fixed;top:var(--space-md);left:var(--gutter);z-index:var(--z-nav);
+  display:flex;align-items:center;gap:var(--space-sm);
+  background:color-mix(in oklab,var(--color-paper-2) 88%,transparent);backdrop-filter:blur(10px);
+  border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-pill);
+  padding:var(--space-2xs) var(--space-xs) var(--space-2xs) var(--space-sm);min-height:44px}
+.chip-nav__mark{font-family:var(--font-display);font-weight:800;font-size:var(--text-sm);
+  letter-spacing:.14em;line-height:1;white-space:nowrap}
+.chip-nav__go{font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;line-height:1;
+  white-space:nowrap;background:var(--color-accent);color:var(--color-paper);
+  border-radius:var(--radius-pill);padding:var(--space-2xs) var(--space-sm);min-height:32px;
+  display:inline-flex;align-items:center;
+  transition:background-color var(--dur-base) var(--ease-out)}
+.chip-nav__go:hover{background:var(--color-ink)}
+.chip-nav__go:active{background:var(--color-accent-2)}
+
+/* ── Hero: the quote is the headline ───────────────────── */
+.hero{padding-block:var(--space-4xl) var(--space-3xl);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,280px);gap:var(--space-2xl);align-items:end}
+.hero blockquote{font-family:var(--font-display);font-weight:700;font-size:var(--text-hero);
+  line-height:var(--lh-tight);max-width:20ch;overflow-wrap:anywhere;min-width:0}
+.hero blockquote b{font-weight:700;color:var(--color-accent)}
+.hero__attrib{margin-top:var(--space-lg);padding-top:var(--space-sm);
+  border-top:var(--rule-hair) solid var(--color-rule);max-width:34ch}
+.hero__attrib p{font-size:var(--text-sm);color:var(--color-muted)}
+.hero__attrib p b{font-weight:500;color:var(--color-ink);display:block;font-size:var(--text-base)}
+.hero__side{border-left:var(--rule-hair) solid var(--color-rule);padding-left:var(--space-md)}
+.hero__side p{font-size:var(--text-sm);color:var(--color-muted);max-width:32ch}
+.hero__side p+p{margin-top:var(--space-sm)}
+@media(max-width:60rem){
+  .hero{grid-template-columns:minmax(0,1fr);padding-block:var(--space-4xl) var(--space-2xl)}
+  .hero__side{border-left:none;border-top:var(--rule-hair) solid var(--color-rule);
+    padding-left:0;padding-top:var(--space-md)}
+}
+
+/* ── Quote wall — deliberately uneven ──────────────────── */
+.wall{padding-block:var(--space-2xl);border-top:var(--rule-hair) solid var(--color-rule)}
+.wall h2{font-size:var(--text-3xl);max-width:18ch;margin-bottom:var(--space-xl)}
+.wall__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));
+  gap:var(--space-md)}
+.said{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);
+  border-radius:var(--radius-md);padding:var(--space-md);display:flex;flex-direction:column;
+  transition:border-color var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+.said:hover{border-color:var(--color-accent-2);transform:translateY(-3px)}
+.said--wide{grid-column:span 2}
+.said blockquote{font-size:var(--text-lg);line-height:var(--lh-snug);color:var(--color-ink);
+  margin-bottom:var(--space-md)}
+.said--wide blockquote{font-family:var(--font-display);font-weight:500;font-size:var(--text-mid);max-width:30ch}
+.said__who{margin-top:auto;padding-top:var(--space-2xs);
+  border-top:var(--rule-hair) solid var(--color-rule);display:flex;align-items:center;
+  justify-content:space-between;gap:var(--space-2xs);flex-wrap:wrap}
+.said__who b{font-weight:500;font-size:var(--text-sm)}
+.said__who span{font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted)}
+.said__piece{font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--color-accent);margin-bottom:var(--space-2xs)}
+@media(max-width:60rem){.said--wide{grid-column:span 1}}
+
+/* ── The bad ones ──────────────────────────────────────── */
+.bad{margin-block:var(--space-2xl);border:var(--rule-firm) solid var(--color-warn);
+  border-radius:var(--radius-md);padding:var(--space-xl) var(--space-lg)}
+.bad h2{font-size:var(--text-2xl);max-width:22ch;margin-bottom:var(--space-2xs);color:var(--color-warn)}
+.bad__lede{color:var(--color-ink-2);max-width:60ch;margin-bottom:var(--space-lg)}
+.bad__list{list-style:none;display:grid;gap:var(--space-md);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.bad__list li{border-top:var(--rule-hair) solid var(--color-rule);padding-top:var(--space-sm)}
+.bad__list blockquote{font-size:var(--text-base);color:var(--color-ink);margin-bottom:var(--space-2xs);max-width:44ch}
+.bad__list .who{font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted)}
+.bad__list .reply{margin-top:var(--space-2xs);font-size:var(--text-sm);color:var(--color-ink-2);max-width:46ch}
+.bad__list .reply b{font-weight:500;color:var(--color-warn)}
+
+/* ── Ft5 · Statement ───────────────────────────────────── */
+.stmt{border-top:var(--rule-hair) solid var(--color-rule);padding-block:var(--space-3xl) var(--space-xl);
+  margin-top:var(--space-2xl)}
+.stmt__line{font-family:var(--font-display);font-weight:800;font-size:clamp(1.75rem,5vw,4rem);
+  line-height:var(--lh-tight);max-width:20ch;margin-bottom:var(--space-xl);overflow-wrap:anywhere;min-width:0}
+.stmt__line span{color:var(--color-accent)}
+.stmt__meta{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;
+  padding-top:var(--space-sm);border-top:var(--rule-hair) solid var(--color-rule);
+  font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--color-muted)}
+.stmt__meta a{white-space:nowrap;line-height:1;transition:color var(--dur-fast) var(--ease-out)}
+.stmt__meta a:hover{color:var(--color-accent)}
+.stmt__meta b{font-family:var(--font-display);font-weight:800;color:var(--color-ink);letter-spacing:.1em}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="chip-nav" aria-label="Primary">
+  <span class="chip-nav__mark">ICE JEWELS</span>
+  <a class="chip-nav__go" href="#wall">Read them</a>
+</nav>
+
+<main>
+<section class="hero wrap">
+  <div>
+    <blockquote>"I brought in the chain my dad left me. They tested it, told me it was plated,
+      and <b>charged me nothing</b> for the bad news."</blockquote>
+    <div class="hero__attrib">
+      <p><b>Marcus Ellery</b>Walked in to have a piece tested. Did not buy anything that day,
+        or the next three times.</p>
+    </div>
+  </div>
+  <aside class="hero__side">
+    <p>Everything on this page was written by someone who owns a piece, or who came in and left
+      without buying one.</p>
+    <p>We have not edited them for length or tone, and the critical ones are further down under
+      their own heading rather than quietly missing.</p>
+  </aside>
+</section>
+
+<section class="wall wrap" id="wall">
+  <h2>What people said, in their own words.</h2>
+  <div class="wall__grid">
+
+    <article class="said said--wide">
+      <p class="said__piece">Cuban link, 10 mm</p>
+      <blockquote>"They talked me out of the heavier one. Sat me down with both on the scale and
+        explained I'd stop wearing the 400-gram version within a month. They were right, and it
+        cost them about two grand."</blockquote>
+      <p class="said__who"><b>Dion Ferrara</b><span>Owner · 14 months</span></p>
+    </article>
+
+    <article class="said">
+      <p class="said__piece">Commission · pendant</p>
+      <blockquote>"Six weeks, four renders, and they never once asked for more money when I changed
+        my mind."</blockquote>
+      <p class="said__who"><b>Priya Raman</b><span>Owner · 8 months</span></p>
+    </article>
+
+    <article class="said">
+      <p class="said__piece">Repair · not our piece</p>
+      <blockquote>"Fixed a clasp on a chain I bought somewhere else. Wouldn't take money for it.
+        I've sent four people since."</blockquote>
+      <p class="said__who"><b>Callum Boyd</b><span>Repair customer</span></p>
+    </article>
+
+    <article class="said">
+      <p class="said__piece">Grillz · top six</p>
+      <blockquote>"The mould kit came with a video of a guy doing it slowly and badly on purpose so
+        you can follow along. Genuinely helpful."</blockquote>
+      <p class="said__who"><b>Sam Okonjo</b><span>Owner · 3 months</span></p>
+    </article>
+
+    <article class="said said--wide">
+      <p class="said__piece">Tennis chain, 4 mm</p>
+      <blockquote>"I asked why theirs was cheaper and instead of a sales answer I got a breakdown of
+        what the metal cost, what the stones cost, and what their margin was. Nobody has ever shown
+        me a margin before."</blockquote>
+      <p class="said__who"><b>Antonia Vela</b><span>Owner · 2 years</span></p>
+    </article>
+
+    <article class="said">
+      <p class="said__piece">Trade-in</p>
+      <blockquote>"Weighed my old pieces in front of me and showed the refining deduction on paper
+        before I agreed. No theatre."</blockquote>
+      <p class="said__who"><b>Ray Mensah</b><span>Trade-in · 6 months</span></p>
+    </article>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="bad">
+    <h2>The ones that weren't kind</h2>
+    <p class="bad__lede">A testimonial page that only carries praise is an advertisement. These are
+      the complaints, unedited, with what we said back. We have not removed the ones where the
+      customer was right.</p>
+    <ul class="bad__list">
+      <li>
+        <blockquote>"Six weeks is six weeks. Other places said 48 hours and I didn't believe the
+          timeline until I'd already paid a deposit here."</blockquote>
+        <p class="who">Tomas Iversen · Commission</p>
+        <p class="reply"><b>We said:</b> fair. We now put the timeline on the quote in writing
+          before the deposit, not after, because of this.</p>
+      </li>
+      <li>
+        <blockquote>"The shop is tiny and there's nowhere to sit while you wait. Felt rushed on a
+          Saturday."</blockquote>
+        <p class="who">Nadia Hallgren · Walk-in</p>
+        <p class="reply"><b>We said:</b> also fair, and unfixed. The bench takes most of the room
+          and we would rather keep the bench.</p>
+      </li>
+      <li>
+        <blockquote>"Told me I didn't need VVS. I wanted VVS. It came across like they were deciding
+          what I could have."</blockquote>
+        <p class="who">Ben Achebe · Owner</p>
+        <p class="reply"><b>We said:</b> a real mistake on our part. Advice once, then it's your
+          call — we sold the VVS and we should have sooner.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="stmt">
+  <div class="wrap">
+    <p class="stmt__line">Come and put something <span>on the scale.</span></p>
+    <p class="stmt__meta">
+      <b>ICE JEWELS</b>
+      <a href="#">Stock list</a><a href="#">Commission</a><a href="#">Repairs</a><a href="#">Visit</a>
+      <span>© 2026</span><span>Concept 13 — Worn</span><span>All copy is placeholder</span>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

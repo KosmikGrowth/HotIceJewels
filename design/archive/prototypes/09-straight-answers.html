@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE JEWELS — Straight Answers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
+ * macrostructure: Conversational FAQ · nav: N7 Brutal slab · footer: Ft2 Inline rule single line
+ * theme: Brutal (mid concrete paper · display-heavy · warm-red accent)
+ * knobs: disclosure=native-details, question-weight=800, divider=firm-rule
+ * genre: editorial · tone: brutalist · enrichment: none (typography only)
+ * audience: first-time buyers who assume every jeweller is lying to them
+ */
+:root{
+  --color-paper:      oklch(81% 0.011 92);
+  --color-paper-2:    oklch(75% 0.013 90);
+  --color-paper-3:    oklch(88% 0.009 93);
+  --color-ink:        oklch(18% 0.014 60);
+  --color-ink-2:      oklch(35% 0.013 62);
+  --color-muted:      oklch(43% 0.012 64);
+  --color-accent:     oklch(50% 0.197 28);
+  --color-accent-ink: oklch(96% 0.010 60);
+  --color-focus:      oklch(44% 0.170 250);
+  --font-display:'Bricolage Grotesque','Arial Black',sans-serif;
+  --font-body:'Work Sans','Helvetica Neue',sans-serif;
+  --text-xs:0.6875rem; --text-sm:0.8125rem; --text-base:0.9375rem; --text-lg:1.125rem;
+  --text-xl:1.375rem; --text-2xl:1.875rem; --text-3xl:2.5rem;
+  --text-q:clamp(1.5rem,3.4vw,2.5rem);
+  --text-display-s:clamp(2rem,5vw,3.5rem); --text-display:clamp(2.75rem,7.5vw,6rem);
+  --lh-tight:1.02; --lh-snug:1.22; --lh-body:1.66;
+  --space-3xs:4px; --space-2xs:8px; --space-xs:12px; --space-sm:16px; --space-md:24px;
+  --space-lg:32px; --space-xl:48px; --space-2xl:64px; --space-3xl:96px; --space-4xl:128px;
+  --gutter:clamp(16px,4vw,44px);
+  --rule-hair:1px; --rule-firm:2px; --rule-slab:4px;
+  --radius-none:0;
+  --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.4,0,1,1); --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:120ms; --dur-base:200ms; --dur-slow:400ms;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);
+  font-weight:300;font-size:var(--text-base);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-accent);color:var(--color-accent-ink)}
+:focus-visible{outline:var(--rule-firm) solid var(--color-focus);outline-offset:3px}
+h1,h2,h3{font-family:var(--font-display);font-style:normal;font-weight:800;
+  line-height:var(--lh-tight);overflow-wrap:anywhere;min-width:0}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:var(--gutter)}
+.prose{max-width:64ch}
+
+/* ── N7 · Brutal slab ──────────────────────────────────── */
+.slab{border-bottom:var(--rule-slab) solid var(--color-ink);background:var(--color-paper)}
+.slab__in{display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);
+  padding-block:var(--space-sm)}
+.slab__mark{font-family:var(--font-display);font-weight:800;font-size:var(--text-xl);
+  letter-spacing:-.01em;text-transform:uppercase;line-height:1}
+.slab__links{display:flex;align-items:center;gap:var(--space-md);flex-wrap:wrap}
+.slab__links a{font-size:var(--text-xs);font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  white-space:nowrap;line-height:1;color:var(--color-ink-2);
+  transition:color var(--dur-fast) var(--ease-out)}
+.slab__links a:hover{color:var(--color-accent)}
+.slab__cta{font-size:var(--text-xs);font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  white-space:nowrap;line-height:1;background:var(--color-ink);color:var(--color-paper);
+  padding:var(--space-xs) var(--space-sm);min-height:40px;display:inline-flex;align-items:center;
+  transition:background-color var(--dur-fast) var(--ease-out)}
+.slab__cta:hover{background:var(--color-accent)}
+.slab__cta:active{background:var(--color-ink-2)}
+@media(max-width:48rem){.slab__links a:not(.keep){display:none}}
+
+/* ── Hero: the page opens on a question, not a claim ───── */
+.open{padding-block:var(--space-2xl) var(--space-3xl);
+  border-bottom:var(--rule-slab) solid var(--color-ink)}
+.open__q{font-size:var(--text-display);max-width:13ch;margin-bottom:var(--space-md)}
+.open__q span{color:var(--color-accent)}
+.open__a{font-size:var(--text-lg);color:var(--color-ink-2);max-width:56ch}
+.open__a strong{font-weight:500;color:var(--color-ink)}
+.open__meta{display:flex;flex-wrap:wrap;gap:var(--space-md);margin-top:var(--space-xl);
+  padding-top:var(--space-sm);border-top:var(--rule-firm) solid var(--color-ink)}
+.open__meta span{font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--color-muted)}
+
+/* ── The Q&A — native disclosure, eight states handled ── */
+.qa{padding-block:var(--space-2xl) var(--space-3xl)}
+.qa__title{font-size:var(--text-3xl);margin-bottom:var(--space-lg);max-width:16ch}
+.q{border-top:var(--rule-firm) solid var(--color-ink)}
+.q:last-of-type{border-bottom:var(--rule-firm) solid var(--color-ink)}
+.q>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;gap:var(--space-md);
+  padding-block:var(--space-md);font-family:var(--font-display);font-weight:600;
+  font-size:var(--text-q);line-height:var(--lh-snug);
+  transition:color var(--dur-fast) var(--ease-out)}
+.q>summary::-webkit-details-marker{display:none}
+.q>summary:hover{color:var(--color-accent)}
+.q>summary:active{color:var(--color-ink-2)}
+.q__sign{flex:0 0 auto;width:28px;height:28px;margin-top:4px;position:relative;
+  border:var(--rule-firm) solid currentColor}
+.q__sign::before,.q__sign::after{content:'';position:absolute;background:currentColor}
+.q__sign::before{inset:50% 22% auto;height:var(--rule-firm);transform:translateY(-50%)}
+.q__sign::after{inset:22% 50% auto;width:var(--rule-firm);transform:translateX(-50%);
+  transition:transform var(--dur-base) var(--ease-out),opacity var(--dur-base) var(--ease-out)}
+.q[open] .q__sign::after{transform:translateX(-50%) scaleY(0);opacity:0}
+.q__body{padding-bottom:var(--space-lg);padding-left:calc(28px + var(--space-md))}
+.q__body p{color:var(--color-ink-2);max-width:62ch}
+.q__body p+p{margin-top:var(--space-sm)}
+.q__body b{font-weight:500;color:var(--color-ink)}
+.q__tag{display:inline-block;margin-top:var(--space-sm);font-size:var(--text-xs);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--color-accent-ink);background:var(--color-accent);
+  padding:var(--space-3xs) var(--space-2xs);line-height:1.5}
+@media(max-width:40rem){.q__body{padding-left:0}}
+
+/* ── What we won't tell you ────────────────────────────── */
+.limits{background:var(--color-ink);color:var(--color-paper-3);
+  padding-block:var(--space-2xl) var(--space-3xl)}
+.limits h2{font-size:var(--text-3xl);margin-bottom:var(--space-md);max-width:18ch;color:var(--color-paper-3)}
+.limits__lead{color:var(--color-paper-2);max-width:60ch;margin-bottom:var(--space-xl)}
+.limits__list{list-style:none;display:grid;gap:var(--space-md);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.limits__list li{border-top:var(--rule-firm) solid var(--color-accent);padding-top:var(--space-sm)}
+.limits__list h3{font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-3xs);
+  color:var(--color-paper-3)}
+.limits__list p{font-size:var(--text-sm);color:var(--color-paper-2);max-width:46ch}
+
+/* ── C2 · Inline form as CTA ───────────────────────────── */
+.ask{padding-block:var(--space-2xl) var(--space-3xl);border-bottom:var(--rule-slab) solid var(--color-ink)}
+.ask h2{font-size:var(--text-display-s);max-width:15ch;margin-bottom:var(--space-sm)}
+.ask p{color:var(--color-ink-2);max-width:54ch;margin-bottom:var(--space-lg)}
+.ask__form{display:flex;flex-wrap:wrap;gap:var(--space-2xs);max-width:600px;align-items:stretch}
+.ask__field{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:var(--space-3xs)}
+.ask__field label{font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--color-muted)}
+.ask__field input{font-family:var(--font-body);font-size:var(--text-base);color:var(--color-ink);
+  background:var(--color-paper-3);border:var(--rule-firm) solid var(--color-ink);
+  padding:var(--space-xs) var(--space-sm);min-height:48px;
+  transition:border-color var(--dur-fast) var(--ease-out),background-color var(--dur-fast) var(--ease-out)}
+.ask__field input::placeholder{color:var(--color-muted)}
+.ask__field input:hover{background:var(--color-paper)}
+.ask__field input:focus{outline:var(--rule-firm) solid var(--color-focus);outline-offset:2px}
+.ask__field input:disabled{opacity:.5;cursor:not-allowed}
+.ask__field input[aria-invalid="true"]{border-color:var(--color-accent)}
+.ask__send{align-self:flex-end;font-family:var(--font-display);font-weight:600;font-size:var(--text-base);
+  letter-spacing:.02em;white-space:nowrap;line-height:1;background:var(--color-ink);
+  color:var(--color-paper);border:var(--rule-firm) solid var(--color-ink);cursor:pointer;
+  padding:var(--space-xs) var(--space-lg);min-height:48px;
+  transition:background-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)}
+.ask__send:hover{background:var(--color-accent);border-color:var(--color-accent)}
+.ask__send:active{background:var(--color-ink-2);border-color:var(--color-ink-2)}
+.ask__send:disabled{opacity:.5;cursor:not-allowed;background:var(--color-muted);border-color:var(--color-muted)}
+.ask__send[data-state="loading"]{background:var(--color-muted);border-color:var(--color-muted)}
+.ask__send[data-state="success"]{background:var(--color-accent);border-color:var(--color-accent)}
+.ask__note{margin-top:var(--space-sm);font-size:var(--text-xs);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--color-muted)}
+
+/* ── Ft2 · Inline rule, single line ────────────────────── */
+.foot{padding-block:var(--space-lg)}
+.foot__line{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xs) var(--space-md);
+  font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--color-muted);line-height:1}
+.foot__line a{white-space:nowrap;transition:color var(--dur-fast) var(--ease-out)}
+.foot__line a:hover{color:var(--color-accent)}
+.foot__line b{font-family:var(--font-display);font-weight:800;font-size:var(--text-sm);
+  color:var(--color-ink);letter-spacing:-.01em}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="slab">
+  <div class="wrap slab__in">
+    <a class="slab__mark" href="#">Ice Jewels</a>
+    <nav class="slab__links" aria-label="Sections">
+      <a href="#answers" class="keep">Answers</a>
+      <a href="#limits">Limits</a>
+      <a href="#">Stock</a>
+      <a href="#">Repairs</a>
+    </nav>
+    <a class="slab__cta" href="#ask">Ask us</a>
+  </div>
+</header>
+
+<main>
+<section class="open wrap">
+  <h1 class="open__q">Is it <span>real</span> gold?</h1>
+  <p class="open__a"><strong>Yes — solid, stamped, and weighed in front of you.</strong>
+    That's the question everyone opens with and nobody gets a straight answer to, so we've put it
+    at the top of the page instead of burying it in a policy link. Everything below is the rest of
+    what people actually ask us at the counter, answered the way we'd answer it standing there.</p>
+  <p class="open__meta">
+    <span>No plated stock</span><span>No gold-filled</span><span>No vermeil</span><span>Stamp on every piece</span>
+  </p>
+</section>
+
+<section class="qa wrap" id="answers">
+  <h2 class="qa__title">The rest of what you were going to ask.</h2>
+
+  <details class="q" open>
+    <summary><span class="q__sign" aria-hidden="true"></span>How do I know it's solid and not plated?</summary>
+    <div class="q__body">
+      <p>Three ways, and you can do all of them before you pay. <b>Look for the stamp</b> — 10K, 14K
+        or 18K, struck into the clasp or the inside of the band. <b>Put it on the scale</b> — plated
+        brass weighs about half what solid gold does for the same size, and we'll show you the reading.
+        <b>Ask for the acid test</b> — it takes a minute, we do it at the counter, and it costs nothing.</p>
+      <p>If a shop won't do all three in front of you, that tells you what you need to know.</p>
+    </div>
+  </details>
+
+  <details class="q">
+    <summary><span class="q__sign" aria-hidden="true"></span>Why is yours cheaper than the mall?</summary>
+    <div class="q__body">
+      <p>Because a mall counter pays mall rent, and because most of their price is markup on a piece
+        they bought finished from a wholesaler. We cast and set in the same room we sell in, and we
+        price off the metal weight plus labour rather than off what the tag can bear.</p>
+      <p>It also means we can't discount. There's no inflated number to come down from — the price
+        you see is already the floor.</p>
+      <p class="q__tag">Per-gram pricing is published</p>
+    </div>
+  </details>
+
+  <details class="q">
+    <summary><span class="q__sign" aria-hidden="true"></span>What does VVS actually mean — and do I need it?</summary>
+    <div class="q__body">
+      <p>VVS is a clarity grade: <b>very very slightly included</b>. It means that under 10× magnification
+        a trained grader can just barely find an internal flaw. It is two grades above the point where
+        anything is visible to your eye.</p>
+      <p>So: no, you almost certainly don't need it. The honest answer is that VS stones look identical
+        on a chain at conversational distance and cost meaningfully less. We'll sell you VVS if you want
+        it — we'd just rather you knew what you were paying the premium for.</p>
+    </div>
+  </details>
+
+  <details class="q">
+    <summary><span class="q__sign" aria-hidden="true"></span>Lab-grown or mined — which am I getting?</summary>
+    <div class="q__body">
+      <p>Lab-grown, unless the tag says otherwise. They are chemically and optically the same material,
+        they test as diamond because they are diamond, and they cost a fraction of the mined equivalent.</p>
+      <p>Where a piece uses mined stones we say so on the tag, we name the supplier on the receipt,
+        and the price reflects it. We don't mix the two in one piece without telling you.</p>
+    </div>
+  </details>
+
+  <details class="q">
+    <summary><span class="q__sign" aria-hidden="true"></span>What happens when a stone falls out?</summary>
+    <div class="q__body">
+      <p>Bring it in and we reset it, free, for as long as we're open. Same for re-tipping worn prongs,
+        re-soldering a link, resizing a band, and re-polishing a piece that's gone dull.</p>
+      <p>This isn't a warranty with conditions attached — there's no registration, no receipt required,
+        no window. We set it, so we fix it. The only thing we charge for is replacing a stone that was
+        lost rather than broken, and that's at cost.</p>
+      <p class="q__tag">No time limit</p>
+    </div>
+  </details>
+
+  <details class="q">
+    <summary><span class="q__sign" aria-hidden="true"></span>Will it turn my neck green?</summary>
+    <div class="q__body">
+      <p>Not from solid gold. Green skin comes from copper in low-grade alloys and from the base metal
+        under worn-through plating. 10K has more alloy than 14K, so if you have reactive skin, go 14K
+        and up.</p>
+      <p>If a piece you already own is doing it, bring it in — we can usually tell you what it's made of
+        in about two minutes, whether or not you bought it here.</p>
+    </div>
+  </details>
+
+  <details class="q">
+    <summary><span class="q__sign" aria-hidden="true"></span>Can I trade in the chain I've got?</summary>
+    <div class="q__body">
+      <p>Yes, if it's solid. We weigh it, test the karat, and credit you the metal value at the day's fix
+        minus a refining margin we'll show you on paper before you agree to anything.</p>
+      <p>We don't take plated or filled pieces, because there's nothing to recover. We'll still test them
+        for you and tell you what you've actually got.</p>
+    </div>
+  </details>
+
+  <details class="q">
+    <summary><span class="q__sign" aria-hidden="true"></span>How long does a custom piece take?</summary>
+    <div class="q__body">
+      <p>Four to six weeks for most things, longer if the setting is complicated. Anyone promising you
+        a fully custom, hand-set piece in 48 hours is either selling you something pre-made or having
+        it done somewhere they can't tell you about.</p>
+      <p>You'll see a render before we cast, and you don't pay the balance until you've approved it.</p>
+    </div>
+  </details>
+</section>
+
+<section class="limits" id="limits">
+  <div class="wrap">
+    <h2>Three things we won't tell you.</h2>
+    <p class="limits__lead">A page of answers is only worth reading if it's also honest about where
+      the answers stop. These are the questions we get asked that we won't give you a clean number for.</p>
+    <ul class="limits__list">
+      <li>
+        <h3>What it'll be worth later</h3>
+        <p>Nobody knows where gold trades next year, and any jeweller quoting you an appreciation figure
+          is guessing at best. Buy it because you want to wear it.</p>
+      </li>
+      <li>
+        <h3>That it's an investment</h3>
+        <p>Retail jewellery sells above melt and buys back below it. That spread is real and it doesn't
+          close quickly. Treat it as something you own, not something you hold.</p>
+      </li>
+      <li>
+        <h3>What another shop's piece is worth</h3>
+        <p>We'll test the metal and tell you the karat and the weight. We won't put a resale number on
+          someone else's work — we don't know what was paid or what's inside it.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="ask wrap" id="ask">
+  <h2>Ask something that isn't here.</h2>
+  <p>It goes to the bench, not to a support queue. If it's a good question we'll add it to this page
+    so the next person doesn't have to ask.</p>
+  <form class="ask__form" novalidate>
+    <div class="ask__field">
+      <label for="q-email">Where to reply</label>
+      <input id="q-email" name="email" type="email" placeholder="you@email.com" required>
+    </div>
+    <div class="ask__field">
+      <label for="q-body">Your question</label>
+      <input id="q-body" name="question" type="text" placeholder="Ask it plainly" required>
+    </div>
+    <button class="ask__send" type="submit">Send it</button>
+  </form>
+  <p class="ask__note">Answered by a person, usually same day</p>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__line">
+      <b>ICE JEWELS</b>
+      <span>© 2026</span>
+      <a href="#">Stock list</a>
+      <a href="#">Repairs</a>
+      <a href="#">Trade-in</a>
+      <a href="#">Visit the bench</a>
+      <span>Concept 09 — Straight Answers</span>
+      <span>All copy is placeholder</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+document.querySelector('.ask__form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const form=e.currentTarget, btn=form.querySelector('.ask__send');
+  const email=form.querySelector('#q-email'), body=form.querySelector('#q-body');
+  let bad=false;
+  [email,body].forEach(f=>{
+    const invalid=!f.value.trim()||(f.type==='email'&&!f.checkValidity());
+    f.setAttribute('aria-invalid',invalid?'true':'false');
+    if(invalid)bad=true;
+  });
+  if(bad){btn.dataset.state='error';btn.textContent='Check the fields';return}
+  btn.dataset.state='loading';btn.textContent='Sending…';btn.disabled=true;
+  setTimeout(()=>{btn.dataset.state='success';btn.textContent='Sent — we’ll reply';},700);
+});
+</script>
+</body>
+</html>

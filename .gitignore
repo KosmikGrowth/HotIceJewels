@@ -1,0 +1,6 @@
+.vercel
+.DS_Store
+# locally installed agent skills — not part of the site
+.agents/
+.claude/
+skills-lock.json
